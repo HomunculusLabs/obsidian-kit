@@ -1,0 +1,68 @@
+#!/usr/bin/env node
+
+const { program } = require('commander');
+const chalk = require('chalk');
+const path = require('path');
+
+// Import commands
+const initCommand = require('../commands/init');
+const mcpCommand = require('../commands/mcp');
+const statusCommand = require('../commands/status');
+
+program
+  .name('obsidian-kit')
+  .description('CLI tool for setting up Obsidian vaults with AI agent integration')
+  .version('1.0.0');
+
+// Init command
+program
+  .command('init [project-name]')
+  .description('Initialize new project vault')
+  .option('-d, --dir <directory>', 'Target directory (default: current directory)')
+  .option('-f, --force', 'Force initialization even if directory is not empty')
+  .action(initCommand);
+
+// MCP command
+program
+  .command('add-mcp')
+  .description('Add/configure Obsidian MCP server')
+  .option('-k, --api-key <key>', 'Obsidian REST API key')
+  .option('-v, --vault-name <name>', 'Vault name')
+  .action(mcpCommand);
+
+// Status command
+program
+  .command('status')
+  .description('Show vault health and AI agent status')
+  .option('-v, --verbose', 'Show detailed status information')
+  .action(statusCommand);
+
+// Help command
+program
+  .command('help')
+  .description('Show help information')
+  .action(() => {
+    console.log(chalk.blue.bold('\n🧠 Obsidian Kit - AI-Powered Project Vaults\n'));
+    console.log(chalk.gray('A CLI tool for creating Obsidian vaults with integrated AI agents,'));
+    console.log(chalk.gray('task management, and spec-driven development workflows.\n'));
+
+    console.log(chalk.yellow('📋 Available Commands:'));
+    console.log('  init [name]    Initialize new project vault');
+    console.log('  add-mcp        Configure MCP server integration');
+    console.log('  status         Show vault and agent status');
+    console.log('  help           Show this help message\n');
+
+    console.log(chalk.yellow('🚀 Quick Start:'));
+    console.log('  obsidian-kit init my-project');
+    console.log('  obsidian-kit add-mcp --vault-name my-project\n');
+
+    console.log(chalk.gray('For more information, visit: https://github.com/username/obsidian-kit'));
+  });
+
+// Parse arguments
+program.parse();
+
+// Show help if no command provided
+if (!process.argv.slice(2).length) {
+  program.outputHelp();
+}

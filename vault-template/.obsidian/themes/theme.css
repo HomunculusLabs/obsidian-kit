@@ -1,0 +1,303 @@
+/* Midnight Moss Theme for Obsidian
+   Based on your terminal rice configuration colors
+   Dark organic palette with mossy green-teal accents */
+
+.theme-dark {
+  /* === MAIN COLORS === */
+  --background-primary: #1c1c1c;
+  --background-primary-alt: #262626;
+  --background-secondary: #2e2e2e;
+  --background-secondary-alt: #3a3a3a;
+  --background-tertiary: #464646;
+  --background-modifier-border: #525252;
+  --background-modifier-form-field: #2e2e2e;
+  --background-modifier-form-field-highlighted: #3a3a3a;
+  --background-modifier-box-shadow: rgba(0, 0, 0, 0.3);
+  --background-modifier-success: #6e8f7c;
+  --background-modifier-error: #9b6a6c;
+  --background-modifier-error-rgb: 155, 106, 108;
+  --background-modifier-error-hover: #a37174;
+  --background-modifier-cover: rgba(28, 28, 28, 0.8);
+  
+  /* === TEXT COLORS === */
+  --text-normal: #b8b8b8;
+  --text-muted: #7a7a7a;
+  --text-faint: #525252;
+  --text-error: #9b6a6c;
+  --text-success: #6e8f7c;
+  --text-warning: #a09262;
+  --text-on-accent: #1c1c1c;
+  --text-accent: #5e8d87;
+  --text-accent-hover: #6e9b95;
+  --text-selection: rgba(94, 141, 135, 0.2);
+  
+  /* === ACCENT COLORS === */
+  --accent-color: #5e8d87;
+  --accent-color-hover: #6e9b95;
+  --interactive-normal: #3a3a3a;
+  --interactive-hover: #464646;
+  --interactive-accent: #5e8d87;
+  --interactive-accent-hover: #6e9b95;
+  --interactive-success: #6e8f7c;
+  
+  /* === BORDERS === */
+  --border-color: #525252;
+  --divider-color: #3a3a3a;
+  --divider-color-hover: #464646;
+  
+  /* === SCROLLBARS === */
+  --scrollbar-bg: #2e2e2e;
+  --scrollbar-thumb-bg: #464646;
+  --scrollbar-active-thumb-bg: #525252;
+  
+  /* === SYNTAX HIGHLIGHTING === */
+  --code-normal: #c8c8c8;
+  --code-background: #262626;
+  --code-comment: #7a7a7a;
+  --code-function: #5d7e97;
+  --code-important: #9b6a6c;
+  --code-keyword: #826d94;
+  --code-operator: #5e8d87;
+  --code-property: #6e8f7c;
+  --code-punctuation: #b8b8b8;
+  --code-string: #a09262;
+  --code-tag: #9d7a5a;
+  --code-value: #6e8f7c;
+  
+  /* === EDITOR === */
+  --editor-font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  --font-monospace: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  
+  /* === GRAPH === */
+  --graph-node: #5e8d87;
+  --graph-node-tag: #826d94;
+  --graph-node-attachment: #9d7a5a;
+  --graph-node-unresolved: #9b6a6c;
+  --graph-node-focused: #6e8f7c;
+  --graph-line: #3a3a3a;
+  --graph-line-highlight: #5e8d87;
+  
+  /* === TAGS === */
+  --tag-color: #5e8d87;
+  --tag-background: rgba(94, 141, 135, 0.15);
+  --tag-color-hover: #6e9b95;
+  --tag-background-hover: rgba(94, 141, 135, 0.25);
+  
+  /* === TABLES === */
+  --table-border-color: #3a3a3a;
+  --table-header-background: #262626;
+  --table-header-background-hover: #2e2e2e;
+  --table-row-even-background: rgba(58, 58, 58, 0.1);
+  --table-row-odd-background: transparent;
+  --table-row-alt-background: rgba(58, 58, 58, 0.05);
+  
+  /* === CALLOUTS === */
+  --callout-bug: #9b6a6c;
+  --callout-default: #5e8d87;
+  --callout-error: #9b6a6c;
+  --callout-example: #826d94;
+  --callout-fail: #9b6a6c;
+  --callout-important: #9d7a5a;
+  --callout-info: #5d7e97;
+  --callout-note: #5e8d87;
+  --callout-question: #a09262;
+  --callout-success: #6e8f7c;
+  --callout-summary: #5e8d87;
+  --callout-tip: #6e8f7c;
+  --callout-todo: #5d7e97;
+  --callout-warning: #a09262;
+  --callout-quote: #7a7a7a;
+  
+  /* === MODALS === */
+  --modal-background: #1c1c1c;
+  --modal-border: #464646;
+  --modal-border-focused: #5e8d87;
+  
+  /* === SEARCH === */
+  --search-result-background: rgba(94, 141, 135, 0.1);
+  --search-clear-button-color: #7a7a7a;
+  --search-clear-button-color-hover: #b8b8b8;
+  --search-clear-button-color-active: #c8c8c8;
+  
+  /* === SLIDER === */
+  --slider-track-background: #3a3a3a;
+  --slider-thumb-border-color: #5e8d87;
+  --slider-thumb-border-color-hover: #6e9b95;
+}
+
+/* === CUSTOM ENHANCEMENTS === */
+
+/* Sidebar styling */
+.nav-folder-title {
+  color: var(--text-accent);
+  font-weight: 500;
+}
+
+.nav-file-title {
+  color: var(--text-normal);
+}
+
+.nav-file-title:hover {
+  color: var(--text-accent-hover);
+}
+
+/* Headers with rice colors */
+.cm-header-1, .markdown-preview-view h1 {
+  color: #6e8f7c;
+  border-bottom: 2px solid rgba(110, 143, 124, 0.3);
+}
+
+.cm-header-2, .markdown-preview-view h2 {
+  color: #5e8d87;
+  border-bottom: 1px solid rgba(94, 141, 135, 0.3);
+}
+
+.cm-header-3, .markdown-preview-view h3 {
+  color: #5d7e97;
+}
+
+.cm-header-4, .markdown-preview-view h4 {
+  color: #826d94;
+}
+
+.cm-header-5, .markdown-preview-view h5 {
+  color: #a09262;
+}
+
+.cm-header-6, .markdown-preview-view h6 {
+  color: #9d7a5a;
+}
+
+/* Code blocks with terminal-like styling */
+.cm-s-obsidian pre.HyperMD-codeblock,
+.markdown-preview-view pre {
+  background: linear-gradient(135deg, #262626 0%, #2e2e2e 100%);
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+}
+
+/* Inline code */
+.cm-inline-code, .markdown-preview-view code {
+  background: rgba(38, 38, 38, 0.6);
+  color: #c8c8c8;
+  border: 1px solid rgba(58, 58, 58, 0.5);
+  border-radius: 3px;
+  padding: 2px 4px;
+}
+
+/* Links */
+.cm-link .cm-underline, .markdown-preview-view a {
+  color: var(--text-accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(94, 141, 135, 0.3);
+}
+
+.cm-link .cm-underline:hover, .markdown-preview-view a:hover {
+  color: var(--text-accent-hover);
+  border-bottom-color: rgba(110, 155, 149, 0.5);
+}
+
+/* Blockquotes */
+.cm-quote, .markdown-preview-view blockquote {
+  border-left: 4px solid #5e8d87;
+  background: rgba(94, 141, 135, 0.05);
+  color: var(--text-muted);
+}
+
+/* Status bar with rice accent */
+.status-bar {
+  background: linear-gradient(90deg, #262626 0%, #2e2e2e 100%);
+  border-top: 1px solid #3a3a3a;
+}
+
+/* Active tab styling */
+.workspace-tab-header.is-active {
+  background: linear-gradient(180deg, #3a3a3a 0%, #2e2e2e 100%);
+  border-bottom: 2px solid var(--text-accent);
+}
+
+/* File explorer icons */
+.nav-folder-children .nav-file-title-content::before {
+  color: var(--text-accent);
+}
+
+/* Scrollbars with rice styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #464646 0%, #525252 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #525252 0%, #5e5e5e 100%);
+}
+
+/* Selection highlighting */
+::selection {
+  background: rgba(94, 141, 135, 0.3);
+  color: var(--text-normal);
+}
+
+/* Canvas styling */
+.canvas-node {
+  background: var(--background-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.canvas-node:hover {
+  border-color: var(--text-accent);
+}
+
+/* Workspace leaf content */
+.workspace-leaf-content {
+  background: var(--background-primary);
+}
+
+/* Rice-inspired gradients for panels */
+.titlebar {
+  background: linear-gradient(90deg, #1c1c1c 0%, #262626 100%);
+}
+
+.workspace-ribbon {
+  background: linear-gradient(180deg, #262626 0%, #2e2e2e 100%);
+  border-right: 1px solid #3a3a3a;
+}
+
+/* Terminal-like focus indicators */
+.workspace-tab-header:hover {
+  background: rgba(94, 141, 135, 0.1);
+}
+
+button:hover {
+  background: rgba(94, 141, 135, 0.15);
+  border-color: var(--text-accent);
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--text-accent);
+  box-shadow: 0 0 0 2px rgba(94, 141, 135, 0.2);
+}
+
+/* Muted backgrounds for secondary content */
+.suggestion-container {
+  background: linear-gradient(135deg, #262626 0%, #2e2e2e 100%);
+  border: 1px solid #3a3a3a;
+}
+
+.dropdown {
+  background: var(--background-secondary);
+  border: 1px solid var(--border-color);
+}
+
+/* Final touch: subtle animations */
+* {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}

@@ -1,0 +1,241 @@
+{
+  "main": {
+    "id": "871d9d8effde3cd6",
+    "type": "split",
+    "children": [
+      {
+        "id": "4afc6a410cc2f07c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8ba78dfe37a5950b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1 - Rough Notes/Obsidian Improvements.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Obsidian Improvements"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "54d31c71c6502c8c",
+    "type": "split",
+    "children": [
+      {
+        "id": "65f202461ee0e04a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f1658a10b26629db",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "4b159d50509a3141",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "1b74621b6e563472",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 281.5026054382324
+  },
+  "right": {
+    "id": "995718ef5cd76a73",
+    "type": "split",
+    "children": [
+      {
+        "id": "20e46d37eabb03fe",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7020bee92e0ab967",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "8 - Projects/RuniverseAI/Context Engineering.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Context Engineering"
+            }
+          },
+          {
+            "id": "3d77ecbc985e7b7c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "fa234e3c66baf0d2",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "3118774cc8427585",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {},
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          },
+          {
+            "id": "069026372147ad29",
+            "type": "leaf",
+            "state": {
+              "type": "footnotes",
+              "state": {
+                "file": "1 - Rough Notes/Obsidian Improvements.md"
+              },
+              "icon": "lucide-file-signature",
+              "title": "Footnotes"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:Create new base": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "templater-obsidian:Templater": false,
+      "markdown-importer:Open format converter": false,
+      "zk-prefixer:Create new unique note": false,
+      "workspaces:Manage workspace layouts": false,
+      "obsidian-git:Open Git source control": false
+    }
+  },
+  "active": "8ba78dfe37a5950b",
+  "lastOpenFiles": [
+    "1 - Rough Notes/Untitled.canvas",
+    "1 - Rough Notes/Obsidian Improvements.md",
+    "2 - Source Material/Books/Emotional UX/Chapter 05 - 4Brain-Friendly Design.md",
+    "7 - Course Work/Cybersecurity/Cybersecurity Dashboard.md",
+    "1 - Rough Notes/Daily Notes/2025-09-28.md",
+    "2 - Source Material/Books/Emotional UX/Chapter 02 - 1Beyond The Pixels.md",
+    "2 - Source Material/Books/Emotional UX/Chapter 01 - Welcome.md",
+    "2 - Source Material/Books/Secrets of the JavaScript Ninja, Third Edition/Chapter 04 - 3Working With Node.Js And Npm.md",
+    "2 - Source Material/Books/Secrets of the JavaScript Ninja, Third Edition/Chapter 03 - 2Using Modern Javascript Tools.md",
+    "2 - Source Material/Books/Secrets of the JavaScript Ninja, Third Edition/Chapter 02 - 1Javascript Is Everywhere.md",
+    "2 - Source Material/Books/Secrets of the JavaScript Ninja, Third Edition/Chapter 01 - Welcome.md",
+    "8 - Projects/Homunculus Labs/Api Gateway.md",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/manning_m.jpg",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/cover.jpg",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/chatGpt.png",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/Stoneman_author-photo-color.png",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/Manning_M_small.png",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/CH21_F14_Stoneman3.png",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/CH21_F13_Stoneman3.png",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/CH21_F12_Stoneman3.png",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/CH21_F11_Stoneman3.png",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/CH21_F10_Stoneman3.png",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/Chapter 30 - 22Never The End.md",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/Chapter 29 - 21Asynchronous Communication With A Message Queue.md",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/Chapter 28 - 20Controlling Http Traffic To Containers With A Re.md",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/Chapter 27 - 19Writing And Managing Application Logs With Docke.md",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/Chapter 26 - 18Application Configuration Management In Containe.md",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/Chapter 25 - 17Optimizing Your Docker Images For Size, Speed, A.md",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/Chapter 24 - Part 4Getting Your Containers Ready For Production.md",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/Chapter 23 - 16CiCd In The Cloud With Docker And Github Actions.md",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/Chapter 22 - 15Kubernetes A Primer.md",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/Chapter 21 - 14Containers In The Cloud With Microsoft Azure And.md",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/Chapter 20 - 13Replatforming The Legacy Packaging And Running W.md",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/Chapter 19 - 12Running Containers On Different Platforms.md",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/Chapter 18 - Part 3Running Containers Anywhere.md",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/Chapter 17 - 11Building And Testing Applications With Docker An.md",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition",
+    "2 - Source Material/Books/Emotional UX/images",
+    "2 - Source Material/Books/Emotional UX",
+    "2 - Source Material/Books/AI Applications Made Easy/images",
+    "2 - Source Material/Books/AI Applications Made Easy",
+    "2 - Source Material/Books/AI Agents and Applications/images",
+    "2 - Source Material/Books/AI Agents and Applications",
+    "5 - Templates/daily-notes.md.tmp.86652.1759040869864",
+    "8 - Projects/Tasks.base",
+    "Untitled.canvas"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "name": "obsidian-kit",
+  "version": "1.0.0",
+  "description": "CLI tool for setting up Obsidian vaults with AI agent integration and spec-driven development",
+  "main": "cli/bin/obsidian-kit",
+  "bin": {
+    "obsidian-kit": "./cli/bin/obsidian-kit"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node cli/bin/obsidian-kit",
+    "install-global": "npm install -g .",
+    "test": "jest"
+  },
+  "keywords": [
+    "obsidian",
+    "ai-agents",
+    "mcp",
+    "project-management",
+    "spec-kit",
+    "documentation"
+  ],
+  "author": "t3rpz",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.0.0",
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.6",
+    "fs-extra": "^11.0.0",
+    "yaml": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/inquirer": "^8.2.0",
+    "@types/fs-extra": "^11.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0",
+    "jest": "^29.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

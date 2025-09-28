@@ -1,0 +1,46 @@
+{
+  "name": "obsidian-project-mcp",
+  "version": "1.0.0",
+  "description": "MCP server configuration for Obsidian project vault",
+  "server": {
+    "command": "npx",
+    "args": [
+      "@cyanheads/obsidian-mcp-server"
+    ],
+    "env": {
+      "OBSIDIAN_REST_API_KEY": "REPLACE_WITH_YOUR_API_KEY",
+      "OBSIDIAN_VAULT_NAME": "REPLACE_WITH_VAULT_NAME",
+      "OBSIDIAN_REST_API_URL": "http://localhost:27123"
+    }
+  },
+  "capabilities": {
+    "tools": [
+      "obsidian_read_note",
+      "obsidian_write_note",
+      "obsidian_create_note",
+      "obsidian_search_notes",
+      "obsidian_list_notes",
+      "obsidian_update_frontmatter",
+      "obsidian_get_tags",
+      "obsidian_create_folder"
+    ]
+  },
+  "setup_instructions": [
+    "1. Install Obsidian Local REST API plugin",
+    "2. Configure plugin with API key",
+    "3. Update mcp-config.json with your vault name and API key",
+    "4. Add to Claude Desktop app_config.json mcpServers section"
+  ],
+  "claude_config_template": {
+    "mcpServers": {
+      "obsidian": {
+        "command": "npx",
+        "args": ["@cyanheads/obsidian-mcp-server"],
+        "env": {
+          "OBSIDIAN_REST_API_KEY": "your-api-key-here",
+          "OBSIDIAN_VAULT_NAME": "your-vault-name-here"
+        }
+      }
+    }
+  }
+}
