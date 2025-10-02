@@ -10,9 +10,10 @@ This project aims to create [PROJECT_VISION_PLACEHOLDER - replace with specific 
 - Specifications are living documents that evolve
 - Implementation follows documented specs
 
-### 2. AI-Assisted Workflow
-- Single AI agent manages project coordination
-- Agent handles routine documentation tasks
+### 2. Universal AI-Assisted Workflow
+- Multi-tool AI agent support (Claude Code, OpenCode, Cursor, etc.)
+- Standardized slash commands across all AI tools
+- Consistent context and specifications regardless of tool
 - Human focus on creative and strategic decisions
 
 ### 3. Knowledge-Centric Approach
@@ -29,7 +30,8 @@ This project aims to create [PROJECT_VISION_PLACEHOLDER - replace with specific 
 - [ ] Clear project specifications maintained
 - [ ] Regular task completion and progress tracking
 - [ ] Up-to-date documentation at all times
-- [ ] Effective AI agent integration
+- [ ] Universal AI agent integration across tools
+- [ ] Consistent workflow regardless of coding environment
 
 ## Decision Framework
 1. **Alignment**: Does this align with project vision?

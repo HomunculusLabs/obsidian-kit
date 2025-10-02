@@ -29,7 +29,8 @@
     "1. Install Obsidian Local REST API plugin",
     "2. Configure plugin with API key",
     "3. Update mcp-config.json with your vault name and API key",
-    "4. Add to Claude Desktop app_config.json mcpServers section"
+    "4. Add to Claude Desktop app_config.json mcpServers section",
+    "5. Configure agents using: obsidian-kit agent add [tool]"
   ],
   "claude_config_template": {
     "mcpServers": {

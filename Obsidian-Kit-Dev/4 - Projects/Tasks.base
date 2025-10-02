@@ -1,0 +1,232 @@
+defaultProperties:
+  title: New Task
+  status: todo
+  priority: medium
+  project: ""
+  assignee: me
+  due_date: 2025-10-15
+  created_date: 2025-09-27
+  completed_date: ""
+  time_estimate: 120
+  time_spent: 0
+  dependencies: []
+  subtasks: []
+  tags:
+    - task
+filters:
+  and:
+    - file.hasTag("task")
+    - file.ext == "md"
+    - file.path.contains("8 - Projects")
+formulas:
+  status_icon: if(status == "completed", icon("check-circle-2"), if(status == "in-progress", icon("play-circle"), if(status == "blocked", icon("x-circle"), if(status == "review", icon("eye"), icon("circle")))))
+  priority_icon: if(priority == "high", "🔴 High", if(priority == "medium", "🟡 Med", "🟢 Low"))
+  relative_due: if(due_date, if(status == "completed", "✅ Complete", date(due_date).relative()), "📅 No due date")
+  project_link: if(project, link(project), "📋 Unassigned")
+  folder_project: file.path.split("/")[2]
+  task_link: file.asLink(title)
+  urgency_score: if(status == "completed", 0, if(due_date, if(today() > date(due_date), 100, if(today() + "3d" > date(due_date), 80, if(today() + "7d" > date(due_date), 60, 40))), 20) + if(priority == "high", 30, if(priority == "medium", 15, 5)) + if(status == "blocked", 25, 0))
+  health_indicator: if(status == "completed", "✅ Done", if(status == "blocked", "🚫 Blocked", if(due_date && today() > date(due_date), "🚨 Overdue", if(due_date && today() + "2d" > date(due_date), "⏰ Due Soon", if(status == "in-progress", "🟡 Active", "⚪ Pending")))))
+  completion_trend: if(completed_date && created_date, if((date(completed_date) - date(created_date)) <= (time_estimate / 60 / 24), "🟢 On Time", "🟡 Delayed"), "⚪ Pending")
+  effort_variance: if(time_spent && time_estimate, if(time_spent <= time_estimate, "✅ Under Budget", if(time_spent <= time_estimate * 1.2, "⚠️ Over Budget", "🚨 Significantly Over")), "N/A")
+  time_spent_hours: if(time_spent, (time_spent / 60).round(1) + "h", "0h")
+  estimated_hours: if(time_estimate, (time_estimate / 60).round(1) + "h", "")
+  days_to_due: if(due_date && status != "completed", if(today() > date(due_date), "⚠️ Overdue", if(date(due_date) > today(), "📅 " + (date(due_date) - today()).toString().replace(/(\d+)\d{8}/, "$1") + " days left", "📅 Due today")), "")
+  progress_indicator: if(status == "completed", "██████████ 100%", if(status == "in-progress", "████░░░░░░ 40%", if(status == "review", "████████░░ 80%", if(status == "blocked", "██░░░░░░░░ 20%", "░░░░░░░░░░ 0%"))))
+  smart_assignee: if(assignee == "me", "👤 " + assignee.title(), if(assignee, "👥 " + assignee.title(), "❓ Unassigned"))
+  deadline_urgency: if(due_date && status != "completed", if(today() > date(due_date), "🚨 OVERDUE", if(today() + "1d" > date(due_date), "🔥 TODAY", if(today() + "3d" > date(due_date), "⚡ URGENT", if(today() + "7d" > date(due_date), "⏰ SOON", "📅 Later")))), "")
+properties:
+  title:
+    displayName: 📝 Task
+  formula.health_indicator:
+    displayName: 🎯 Status
+  formula.deadline_urgency:
+    displayName: 🚨 Urgency
+  formula.progress_indicator:
+    displayName: 📊 Progress
+  formula.relative_due:
+    displayName: 📅 Due
+  formula.days_to_due:
+    displayName: ⏰ Timeline
+  formula.priority_icon:
+    displayName: 🚩 Priority
+  formula.project_link:
+    displayName: 📁 Project
+  formula.smart_assignee:
+    displayName: 👤 Assignee
+  formula.estimated_hours:
+    displayName: ⏱️ Est.
+  formula.time_spent_hours:
+    displayName: ⏲️ Spent
+  formula.effort_variance:
+    displayName: 💰 Budget
+  formula.completion_trend:
+    displayName: 📈 Trend
+  formula.status_icon:
+    displayName: 📊 State
+  status:
+    displayName: Status
+  priority:
+    displayName: Priority
+  assignee:
+    displayName: Assignee
+  due_date:
+    displayName: Due Date
+  formula.urgency_score:
+    displayName: 🔥 Score
+  formula.folder_project:
+    displayName: 📂 Folder
+  formula.task_link:
+    displayName: 🔗 Link
+  tags:
+    displayName: 🏷️ Tags
+views:
+  - type: table
+    name: Todo List
+    filters:
+      and:
+        - status != "completed"
+        - status != "cancelled"
+        - or:
+            - due_date <= today() + "7d"
+            - status == "blocked"
+            - status == "in-progress"
+            - "!due_date"
+    order:
+      - formula.status_icon
+      - formula.task_link
+      - formula.priority_icon
+      - formula.relative_due
+    sort:
+      - property: formula.relative_due
+        direction: DESC
+      - property: title
+        direction: ASC
+      - property: formula.urgency_score
+        direction: DESC
+    limit: 20
+    rowHeight: medium
+    columnSize:
+      formula.status_icon: 173
+      formula.task_link: 290
+      formula.priority_icon: 230
+      formula.relative_due: 150
+  - type: table
+    name: Tasks by Project
+    filters:
+      and:
+        - status != "completed"
+        - status != "cancelled"
+        - or:
+            - due_date <= today() + "7d"
+            - status == "blocked"
+            - status == "in-progress"
+            - "!due_date"
+    order:
+      - formula.project_link
+      - formula.status_icon
+      - formula.task_link
+      - formula.priority_icon
+      - formula.relative_due
+    sort:
+      - property: formula.project_link
+        direction: ASC
+      - property: formula.urgency_score
+        direction: DESC
+    limit: 50
+    rowHeight: medium
+    columnSize:
+      formula.project_link: 150
+      formula.status_icon: 60
+      formula.task_link: 280
+      formula.priority_icon: 100
+      formula.relative_due: 130
+  - type: cards
+    name: Kanban Board
+    filters:
+      and:
+        - status != "completed"
+        - status != "cancelled"
+    groupBy: status
+    order:
+      - formula.deadline_urgency
+      - title
+      - formula.priority_icon
+      - formula.relative_due
+    sort:
+      - property: formula.urgency_score
+        direction: DESC
+      - property: due_date
+        direction: ASC
+    limit: 100
+  - type: cards
+    name: Project Kanban
+    filters:
+      and:
+        - status != "completed"
+        - status != "cancelled"
+    groupBy: formula.project_link
+    order:
+      - formula.deadline_urgency
+      - title
+      - formula.priority_icon
+      - formula.relative_due
+    sort:
+      - property: formula.urgency_score
+        direction: DESC
+    limit: 100
+  - type: table
+    name: Plan Today
+    filters:
+      and:
+        - status != "completed"
+        - status != "cancelled"
+        - or:
+            - due_date > today()
+            - "!due_date"
+    order:
+      - title
+      - formula.priority_icon
+      - formula.project_link
+      - due_date
+      - formula.estimated_hours
+    sort:
+      - property: formula.priority_icon
+        direction: DESC
+      - property: priority
+        direction: DESC
+      - property: time_estimate
+        direction: ASC
+    limit: 50
+    rowHeight: tall
+    columnSize:
+      note.title: 300
+      formula.priority_icon: 100
+      formula.project_link: 130
+      note.due_date: 140
+      formula.estimated_hours: 80
+  - type: table
+    name: All Tasks
+    filters:
+      and:
+        - status != "completed"
+        - status != "cancelled"
+    order:
+      - formula.deadline_urgency
+      - title
+      - formula.project_link
+      - formula.relative_due
+      - formula.smart_assignee
+    sort:
+      - property: formula.urgency_score
+        direction: DESC
+      - property: due_date
+        direction: ASC
+    limit: 100
+    rowHeight: short
+    columnSize:
+      formula.deadline_urgency: 120
+      note.title: 300
+      formula.project_link: 130
+      formula.relative_due: 140
+      formula.smart_assignee: 110

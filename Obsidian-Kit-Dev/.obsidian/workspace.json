@@ -1,0 +1,242 @@
+{
+  "main": {
+    "id": "871d9d8effde3cd6",
+    "type": "split",
+    "children": [
+      {
+        "id": "4afc6a410cc2f07c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8ba78dfe37a5950b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4 - Projects/Workflow-Automation/Tasks/Spec-Driven-Development.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Spec-Driven-Development"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "54d31c71c6502c8c",
+    "type": "split",
+    "children": [
+      {
+        "id": "65f202461ee0e04a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f1658a10b26629db",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "4b159d50509a3141",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "1b74621b6e563472",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 281.5026054382324
+  },
+  "right": {
+    "id": "995718ef5cd76a73",
+    "type": "split",
+    "children": [
+      {
+        "id": "20e46d37eabb03fe",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7020bee92e0ab967",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "8 - Projects/RuniverseAI/Context Engineering.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Context Engineering"
+            }
+          },
+          {
+            "id": "3d77ecbc985e7b7c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "fa234e3c66baf0d2",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "3118774cc8427585",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {},
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          },
+          {
+            "id": "069026372147ad29",
+            "type": "leaf",
+            "state": {
+              "type": "footnotes",
+              "state": {
+                "file": "1 - Rough Notes/Obsidian Improvements.md"
+              },
+              "icon": "lucide-file-signature",
+              "title": "Footnotes"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:Create new base": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "markdown-importer:Open format converter": false,
+      "zk-prefixer:Create new unique note": false,
+      "workspaces:Manage workspace layouts": false,
+      "templater-obsidian:Templater": false,
+      "obsidian-git:Open Git source control": false
+    }
+  },
+  "active": "8ba78dfe37a5950b",
+  "lastOpenFiles": [
+    "4 - Projects/Workflow-Automation/Tasks/Intelligent-Notifications.md",
+    "4 - Projects/Workflow-Automation/Tasks/Enhanced-Workflow-Commands.md",
+    "4 - Projects/Workflow-Automation/Tasks/Automated-Progress-Tracking.md",
+    "4 - Projects/Task-Management-Intelligence/Task-Management-Intelligence Dashboard.md",
+    "4 - Projects/Task-Management-Intelligence/Task-Management-Intelligence.md",
+    "4 - Projects/Knowledge-Integration/Tasks/Semantic-Search.md",
+    "4 - Projects/Knowledge-Integration/Tasks/Learning-Capture.md",
+    "4 - Projects/Knowledge-Integration/Tasks/Knowledge-Graph.md",
+    "4 - Projects/Knowledge-Integration/Tasks/Automated-Documentation.md",
+    "4 - Projects/Obsidian-Kit-Evolution/Tasks/Enhance-Agent-Intelligence.md",
+    "4 - Projects/Knowledge-Integration/Knowledge-Integration Dashboard.md",
+    "4 - Projects/Knowledge-Integration/Knowledge-Integration.md",
+    "4 - Projects/Workflow-Automation/Tasks/Spec-Driven-Development.md",
+    "4 - Projects/Workflow-Automation/Workflow-Automation Dashboard.md",
+    "4 - Projects/Workflow-Automation/Workflow-Automation.md",
+    "4 - Projects/Task-Management-Intelligence/Tasks/Automated-Task-Generation.md",
+    "4 - Projects/Task-Management-Intelligence/Tasks/Dependency-Management.md",
+    "4 - Projects/Task-Management-Intelligence/Tasks/AI-Task-Breakdown.md",
+    "4 - Projects/Task-Management-Intelligence/Tasks/Fix-Dataview-Queries.md",
+    "4 - Projects/Knowledge-Integration/Tasks",
+    "4 - Projects/Knowledge-Integration",
+    "4 - Projects/Workflow-Automation/Tasks",
+    "4 - Projects/Workflow-Automation",
+    "4 - Projects/Task-Management-Intelligence/Tasks",
+    "4 - Projects/Task-Management-Intelligence",
+    "4 - Projects/Obsidian-Kit-Evolution/Tasks/Automated-Documentation.md",
+    "4 - Projects/Obsidian-Kit-Evolution/Tasks/Advanced-Task-Management.md",
+    "4 - Projects/Obsidian-Kit-Evolution/Obsidian-Kit-Evolution Dashboard.md",
+    "4 - Projects/Obsidian-Kit-Evolution/Obsidian-Kit-Evolution.md",
+    "4 - Projects/Obsidian-Kit-Evolution/Tasks/Plugin-Ecosystem.md",
+    "4 - Projects/Obsidian-Kit-Evolution/Tasks/Performance-Optimization.md",
+    "4 - Projects/Obsidian-Kit-Evolution/Tasks/Multi-Tool-Integration.md",
+    "4 - Projects/Community-Features/Tasks",
+    "4 - Projects/Community-Features",
+    "4 - Projects/Documentation-Overhaul/Tasks",
+    "4 - Projects/Documentation-Overhaul",
+    "1 - Rough Notes/Untitled.canvas",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/manning_m.jpg",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/cover.jpg",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/chatGpt.png",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/Stoneman_author-photo-color.png",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/Manning_M_small.png",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/CH21_F14_Stoneman3.png",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/CH21_F13_Stoneman3.png",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/CH21_F12_Stoneman3.png",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/CH21_F11_Stoneman3.png",
+    "2 - Source Material/Books/Learn Docker in a Month of Lunches, Second Edition/images/CH21_F10_Stoneman3.png",
+    "Untitled.canvas"
+  ]
+}
