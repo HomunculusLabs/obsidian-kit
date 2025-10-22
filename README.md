@@ -13,8 +13,11 @@ A CLI tool for setting up Obsidian vaults with AI agent integration, task manage
 ## Quick Start
 
 ```bash
-# Install Obsidian Kit
-curl -sSL https://raw.githubusercontent.com/username/obsidian-kit/main/scripts/install.sh | bash
+# Install Obsidian Kit manually
+git clone https://github.com/HomunculusLabs/obsidian-kit.git
+cd obsidian-kit
+npm install
+npm run install-global
 
 # Create your first project
 obsidian-kit init my-project
@@ -109,16 +112,10 @@ Integrates with spec-kit methodology:
 
 ## Installation
 
-### Automatic Installation
-
-```bash
-curl -sSL https://raw.githubusercontent.com/username/obsidian-kit/main/scripts/install.sh | bash
-```
-
 ### Manual Installation
 
 ```bash
-git clone https://github.com/username/obsidian-kit.git
+git clone https://github.com/HomunculusLabs/obsidian-kit.git
 cd obsidian-kit
 npm install
 ./scripts/install.sh
@@ -127,7 +124,7 @@ npm install
 ### Development Setup
 
 ```bash
-git clone https://github.com/username/obsidian-kit.git
+git clone https://github.com/HomunculusLabs/obsidian-kit.git
 cd obsidian-kit
 npm install
 npm run dev init test-project
@@ -232,9 +229,8 @@ MIT License - see LICENSE file for details.
 
 ## Support
 
-- 📖 Documentation: [Wiki](https://github.com/username/obsidian-kit/wiki)
-- 🐛 Issues: [GitHub Issues](https://github.com/username/obsidian-kit/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/username/obsidian-kit/discussions)
+- 🐛 Issues: [GitHub Issues](https://github.com/HomunculusLabs/obsidian-kit/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/HomunculusLabs/obsidian-kit/discussions)
 
 ---
 

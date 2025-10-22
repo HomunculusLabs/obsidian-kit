@@ -44,7 +44,8 @@ async function getVaultStatus() {
   if (fs.existsSync(mcpConfigPath)) {
     const mcpConfig = await fs.readJson(mcpConfigPath);
     status.vaultName = mcpConfig.server?.env?.OBSIDIAN_VAULT_NAME || path.basename(process.cwd());
-    status.mcpConfigured = !!mcpConfig.server?.env?.OBSIDIAN_REST_API_KEY;
+    // Check if MCP is configured by checking Claude Desktop config instead of local file
+    status.mcpConfigured = await checkClaudeDesktopConfigHasApiKey(status.vaultName);
   }
 
   // Check agent configuration
@@ -79,6 +80,25 @@ async function checkClaudeDesktopConfig(vaultName) {
 
     return obsidianServer &&
            obsidianServer.env?.OBSIDIAN_VAULT_NAME === vaultName;
+  } catch {
+    return false;
+  }
+}
+
+async function checkClaudeDesktopConfigHasApiKey(vaultName) {
+  const claudeConfigPath = getClaudeConfigPath();
+
+  if (!claudeConfigPath || !fs.existsSync(claudeConfigPath)) {
+    return false;
+  }
+
+  try {
+    const claudeConfig = await fs.readJson(claudeConfigPath);
+    const obsidianServer = claudeConfig.mcpServers?.obsidian;
+
+    return obsidianServer &&
+           obsidianServer.env?.OBSIDIAN_VAULT_NAME === vaultName &&
+           !!obsidianServer.env?.OBSIDIAN_REST_API_KEY;
   } catch {
     return false;
   }
