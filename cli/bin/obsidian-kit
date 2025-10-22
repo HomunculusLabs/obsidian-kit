@@ -56,7 +56,7 @@ program
     console.log('  obsidian-kit init my-project');
     console.log('  obsidian-kit add-mcp --vault-name my-project\n');
 
-    console.log(chalk.gray('For more information, visit: https://github.com/username/obsidian-kit'));
+    console.log(chalk.gray('For more information, visit: https://github.com/HomunculusLabs/obsidian-kit'));
   });
 
 // Parse arguments

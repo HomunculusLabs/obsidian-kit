@@ -3,6 +3,7 @@ const path = require('path');
 const chalk = require('chalk');
 const inquirer = require('inquirer');
 const os = require('os');
+const { validateVaultName, validateApiKey } = require('../utils/validation');
 
 async function mcpCommand(options) {
   console.log(chalk.blue.bold('\n🔗 Obsidian Kit - MCP Server Setup\n'));
@@ -33,7 +34,10 @@ async function mcpCommand(options) {
     console.log(chalk.yellow('📋 Setup Summary:'));
     console.log(`   Vault Name: ${config.vaultName}`);
     console.log(`   API Key: ${config.apiKey ? '***' + config.apiKey.slice(-4) : 'Not set'}`);
-    console.log(`   MCP Server: Configured for Claude Desktop\n`);
+    console.log(`   API Key Storage: Claude Desktop config only (secure)\n`);
+    console.log(chalk.cyan('ℹ️  Security Note:'));
+    console.log('   API key is stored only in Claude Desktop config (~/.config/Claude/)');
+    console.log('   NOT stored in local project files for security\n');
 
     console.log(chalk.yellow('🔧 Required Manual Steps:'));
     console.log('1. Install Obsidian Local REST API plugin in Obsidian');
@@ -59,31 +63,44 @@ async function getMCPConfiguration(options) {
 
   // Get vault name
   if (options.vaultName) {
-    config.vaultName = options.vaultName;
+    config.vaultName = validateVaultName(options.vaultName);
   } else {
     // Try to get from existing config or prompt
     const mcpConfigPath = path.join(process.cwd(), 'mcp-config.json');
     if (fs.existsSync(mcpConfigPath)) {
       const existing = await fs.readJson(mcpConfigPath);
-      config.vaultName = existing.server?.env?.OBSIDIAN_VAULT_NAME || path.basename(process.cwd());
+      const defaultName = existing.server?.env?.OBSIDIAN_VAULT_NAME || path.basename(process.cwd());
+      config.vaultName = validateVaultName(defaultName);
     } else {
-      config.vaultName = path.basename(process.cwd());
+      config.vaultName = validateVaultName(path.basename(process.cwd()));
     }
   }
 
   // Get API key
   if (options.apiKey) {
-    config.apiKey = options.apiKey;
+    config.apiKey = validateApiKey(options.apiKey);
   } else {
     const { apiKey } = await inquirer.prompt([
       {
         type: 'password',
         name: 'apiKey',
         message: 'Enter your Obsidian REST API key (or leave blank to set later):',
-        mask: '*'
+        mask: '*',
+        validate: (input) => {
+          // Allow empty input (user can set later)
+          if (!input || input.trim().length === 0) {
+            return true;
+          }
+          try {
+            validateApiKey(input);
+            return true;
+          } catch (error) {
+            return error.message;
+          }
+        }
       }
     ]);
-    config.apiKey = apiKey;
+    config.apiKey = validateApiKey(apiKey);
   }
 
   return config;
@@ -93,16 +110,21 @@ async function updateLocalMCPConfig(config) {
   const mcpConfigPath = path.join(process.cwd(), 'mcp-config.json');
   const mcpConfig = await fs.readJson(mcpConfigPath);
 
-  // Update configuration
+  // Update configuration - ONLY store vault name, NOT API key
+  // API key should only be stored in Claude Desktop config for security
   mcpConfig.server.env.OBSIDIAN_VAULT_NAME = config.vaultName;
-  if (config.apiKey) {
-    mcpConfig.server.env.OBSIDIAN_REST_API_KEY = config.apiKey;
-    mcpConfig.claude_config_template.mcpServers.obsidian.env.OBSIDIAN_REST_API_KEY = config.apiKey;
-  }
   mcpConfig.claude_config_template.mcpServers.obsidian.env.OBSIDIAN_VAULT_NAME = config.vaultName;
 
+  // Remove API key from local config if it exists (security cleanup)
+  if (mcpConfig.server.env.OBSIDIAN_REST_API_KEY) {
+    delete mcpConfig.server.env.OBSIDIAN_REST_API_KEY;
+  }
+  if (mcpConfig.claude_config_template.mcpServers.obsidian.env.OBSIDIAN_REST_API_KEY) {
+    delete mcpConfig.claude_config_template.mcpServers.obsidian.env.OBSIDIAN_REST_API_KEY;
+  }
+
   await fs.writeJson(mcpConfigPath, mcpConfig, { spaces: 2 });
-  console.log(chalk.green('   ✓ Updated local MCP configuration'));
+  console.log(chalk.green('   ✓ Updated local MCP configuration (vault name only)'));
 }
 
 async function installMCPServer() {

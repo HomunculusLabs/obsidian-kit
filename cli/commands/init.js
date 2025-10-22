@@ -2,13 +2,16 @@ const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
 const inquirer = require('inquirer');
+const { validateProjectName, validateDirectoryPath } = require('../utils/validation');
 
 async function initCommand(projectName, options) {
   console.log(chalk.blue.bold('\n🧠 Obsidian Kit - Project Initialization\n'));
 
-  // Determine project name and directory
-  const name = projectName || await promptForProjectName();
-  const targetDir = options.dir || path.join(process.cwd(), name);
+  try {
+    // Determine project name and directory
+    const name = projectName ? validateProjectName(projectName) : await promptForProjectName();
+    const baseDir = options.dir ? validateDirectoryPath(options.dir) : process.cwd();
+    const targetDir = path.join(baseDir, name);
 
   // Check if directory exists and is not empty
   if (fs.existsSync(targetDir) && fs.readdirSync(targetDir).length > 0 && !options.force) {
@@ -53,6 +56,10 @@ async function initCommand(projectName, options) {
     console.error(chalk.red('❌ Error creating project vault:'), error.message);
     process.exit(1);
   }
+  } catch (validationError) {
+    console.error(chalk.red('❌ Validation error:'), validationError.message);
+    process.exit(1);
+  }
 }
 
 async function promptForProjectName() {
@@ -62,17 +69,16 @@ async function promptForProjectName() {
       name: 'name',
       message: 'What is your project name?',
       validate: (input) => {
-        if (!input.trim()) {
-          return 'Project name is required.';
+        try {
+          validateProjectName(input);
+          return true;
+        } catch (error) {
+          return error.message;
         }
-        if (!/^[a-zA-Z0-9\-_\s]+$/.test(input)) {
-          return 'Project name can only contain letters, numbers, spaces, hyphens, and underscores.';
-        }
-        return true;
       }
     }
   ]);
-  return name.trim();
+  return validateProjectName(name);
 }
 
 async function confirmOverwrite(targetDir) {
