@@ -8,6 +8,12 @@ const path = require('path');
 const initCommand = require('../commands/init');
 const mcpCommand = require('../commands/mcp');
 const statusCommand = require('../commands/status');
+const agentCommand = require('../commands/agent');
+const workflowCommand = require('../commands/workflow');
+const taskBreakdownCommand = require('../commands/task-breakdown');
+const taskValidatorCommand = require('../commands/task-validator');
+const automatedTaskGenerationCommand = require('../commands/automated-task-generation');
+const enhancedAgentCommand = require('../commands/enhanced-agent');
 
 program
   .name('obsidian-kit')
@@ -37,6 +43,104 @@ program
   .option('-v, --verbose', 'Show detailed status information')
   .action(statusCommand);
 
+// Agent management commands
+const agentProgram = program
+  .command('agent')
+  .description('Manage AI agent configurations');
+
+agentProgram
+  .command('add [tool]')
+  .description('Configure AI tool integration')
+  .action((tool, options) => agentCommand('add', tool, options));
+
+agentProgram
+  .command('list')
+  .description('Show configured agents')
+  .option('-v, --verbose', 'Show detailed agent information')
+  .action((options) => agentCommand('list', null, options));
+
+agentProgram
+  .command('sync')
+  .description('Update agent configurations')
+  .action((options) => agentCommand('sync', null, options));
+
+agentProgram
+  .command('configure [tool]')
+  .description('Edit agent settings')
+  .action((tool, options) => agentCommand('configure', tool, options));
+
+// Workflow commands
+program
+  .command('workflow [phase]')
+  .description('Execute spec-driven development workflow')
+  .option('-i, --interactive', 'Interactive workflow mode')
+  .action(workflowCommand);
+
+// Task breakdown command
+program
+  .command('breakdown [task-description]')
+  .description('AI-powered task breakdown and estimation')
+  .option('-d, --dry-run', 'Show breakdown without creating files')
+  .option('-s, --subtasks <count>', 'Number of subtasks to generate')
+  .action(taskBreakdownCommand);
+
+// Task validation command
+program
+  .command('validate [task-file]')
+  .description('Validate task quality and completeness')
+  .option('-a, --all', 'Validate all tasks in vault')
+  .action(taskValidatorCommand);
+
+// Automated task generation command
+program
+  .command('generate-tasks')
+  .description('Generate tasks automatically from specifications, code changes, and patterns')
+  .option('-d, --dry-run', 'Show generated tasks without creating files')
+  .action(automatedTaskGenerationCommand);
+
+// Enhanced Agent Intelligence commands
+const enhancedAgentProgram = program
+  .command('enhanced-agent')
+  .description('Enhanced Agent Intelligence system');
+
+enhancedAgentProgram
+  .command('enhance [agent]')
+  .description('Enhance agent with context-aware intelligence')
+  .option('-s, --save', 'Save enhancement reports')
+  .option('-v, --verbose', 'Show detailed output')
+  .option('--no-task', 'Skip task context detection')
+  .option('--no-specs', 'Skip specification context')
+  .option('--context <json>', 'Provide manual context')
+  .action((agent, options) => enhancedAgentCommand('enhance', agent, options));
+
+enhancedAgentProgram
+  .command('analyze')
+  .description('Analyze current project context')
+  .option('-v, --verbose', 'Show detailed output')
+  .option('--no-task', 'Skip task context detection')
+  .option('--no-specs', 'Skip specification context')
+  .action((options) => enhancedAgentCommand('analyze', null, options));
+
+enhancedAgentProgram
+  .command('report')
+  .description('Generate intelligence report')
+  .option('-s, --save', 'Save report to file')
+  .action((options) => enhancedAgentCommand('report', null, options));
+
+enhancedAgentProgram
+  .command('adapt [agent]')
+  .description('Apply adaptive improvements to agent')
+  .option('-v, --verbose', 'Show detailed output')
+  .option('--no-task', 'Skip task context detection')
+  .option('--no-specs', 'Skip specification context')
+  .action((agent, options) => enhancedAgentCommand('adapt', agent, options));
+
+enhancedAgentProgram
+  .command('status')
+  .description('Show system status and metrics')
+  .option('-v, --verbose', 'Show detailed status')
+  .action((options) => enhancedAgentCommand('status', null, options));
+
 // Help command
 program
   .command('help')
@@ -47,14 +151,30 @@ program
     console.log(chalk.gray('task management, and spec-driven development workflows.\n'));
 
     console.log(chalk.yellow('📋 Available Commands:'));
-    console.log('  init [name]    Initialize new project vault');
-    console.log('  add-mcp        Configure MCP server integration');
-    console.log('  status         Show vault and agent status');
-    console.log('  help           Show this help message\n');
+    console.log('  init [name]              Initialize new project vault');
+    console.log('  add-mcp                  Configure MCP server integration');
+    console.log('  status                   Show vault and agent status');
+    console.log('  agent add [tool]         Configure AI tool integration');
+    console.log('  agent list               Show configured agents');
+    console.log('  agent sync               Update agent configurations');
+    console.log('  workflow [phase]         Execute development workflow');
+    console.log('  breakdown [task]         AI-powered task breakdown');
+    console.log('  validate [file]          Validate task quality');
+    console.log('  generate-tasks           Generate tasks automatically');
+    console.log('  enhanced-agent enhance   Enhance agent with AI intelligence');
+    console.log('  enhanced-agent analyze   Analyze project context');
+    console.log('  enhanced-agent report    Generate intelligence report');
+    console.log('  enhanced-agent adapt     Apply adaptive improvements');
+    console.log('  enhanced-agent status    Show system metrics');
+    console.log('  help                     Show this help message\n');
 
     console.log(chalk.yellow('🚀 Quick Start:'));
     console.log('  obsidian-kit init my-project');
-    console.log('  obsidian-kit add-mcp --vault-name my-project\n');
+    console.log('  obsidian-kit agent add claude-code');
+    console.log('  obsidian-kit workflow constitution\n');
+
+    console.log(chalk.yellow('🤖 Supported AI Tools:'));
+    console.log('  claude-code, opencode, cursor, copilot\n');
 
     console.log(chalk.gray('For more information, visit: https://github.com/username/obsidian-kit'));
   });

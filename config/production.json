@@ -1,0 +1,44 @@
+{
+  "environment": "production",
+  "node": {
+    "version": ">=16.0.0",
+    "env": "production"
+  },
+  "logging": {
+    "level": "info",
+    "format": "json"
+  },
+  "security": {
+    "audit": true,
+    "auditLevel": "moderate",
+    "checkDependencies": true
+  },
+  "performance": {
+    "enableMonitoring": true,
+    "memoryThreshold": "512MB",
+    "cpuThreshold": "80%"
+  },
+  "deployment": {
+    "registry": "https://registry.npmjs.org",
+    "tag": "latest",
+    "access": "public",
+    "createGitTag": true,
+    "createGitHubRelease": true
+  },
+  "testing": {
+    "requiredCoverage": 80,
+    "runIntegrationTests": true,
+    "runE2ETests": true,
+    "runPerformanceTests": false
+  },
+  "notifications": {
+    "slack": {
+      "enabled": false,
+      "webhook": ""
+    },
+    "email": {
+      "enabled": false,
+      "recipients": []
+    }
+  }
+}

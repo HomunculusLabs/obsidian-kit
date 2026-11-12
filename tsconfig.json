@@ -5,15 +5,17 @@
     "lib": ["ES2020"],
     "outDir": "./dist",
     "rootDir": "./cli",
-    "strict": true,
+    "strict": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": true,
+    "allowJs": true,
+    "checkJs": false
   },
   "include": ["cli/**/*"],
-  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+  "exclude": ["node_modules", "dist", "**/*.test.js", "**/*.spec.js"]
 }

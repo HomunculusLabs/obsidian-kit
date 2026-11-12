@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Graph Visualizer</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .control-group {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        select, input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .graph-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        #graph {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .node {
+            cursor: pointer;
+        }
+        
+        .node:hover {
+            stroke: #333;
+            stroke-width: 2px;
+        }
+        
+        .link {
+            stroke: #999;
+            stroke-opacity: 0.6;
+        }
+        
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            max-width: 300px;
+        }
+        
+        .legend {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+        
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .search-results {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .search-result {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        
+        .search-result:hover {
+            background: #f0f0f0;
+        }
+        
+        .search-result:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Knowledge Graph Visualizer</h1>
+            <p>Interactive visualization of the Obsidian Kit knowledge graph</p>
+        </div>
+        
+        <div class="stats" id="stats">
+            <!-- Stats will be populated here -->
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label for="entityFilter">Filter by Entity Type:</label>
+                <select id="entityFilter">
+                    <option value="all">All Entities</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="relationshipFilter">Filter by Relationship:</label>
+                <select id="relationshipFilter">
+                    <option value="all">All Relationships</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="searchInput">Search Entities:</label>
+                <input type="text" id="searchInput" placeholder="Search for entities...">
+            </div>
+            
+            <div class="control-group">
+                <label for="layoutSelect">Layout:</label>
+                <select id="layoutSelect">
+                    <option value="force">Force Layout</option>
+                    <option value="circular">Circular Layout</option>
+                    <option value="clustered">Clustered Layout</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="graph-container">
+            <svg id="graph"></svg>
+            <div class="legend" id="legend"></div>
+        </div>
+        
+        <div class="search-results" id="searchResults" style="display: none;">
+            <!-- Search results will appear here -->
+        </div>
+        
+        <div class="tooltip" id="tooltip"></div>
+    </div>
+
+    <script>
+        let graphData = null;
+        let simulation = null;
+        let svg = null;
+        let g = null;
+        let link = null;
+        let node = null;
+        let label = null;
+        
+        // Color scheme for entity types
+        const colorScheme = {
+            project: '#3b82f6',
+            task: '#10b981',
+            technology: '#f59e0b',
+            concept: '#8b5cf6',
+            specification: '#ef4444',
+            agent: '#06b6d4'
+        };
+        
+        // Load and initialize the graph
+        async function loadGraph() {
+            try {
+                const response = await fetch('knowledge-graph.json');
+                graphData = await response.json();
+                
+                initializeStats();
+                initializeFilters();
+                initializeVisualization();
+                initializeLegend();
+            } catch (error) {
+                console.error('Error loading graph data:', error);
+                document.getElementById('graph').innerHTML = '<p>Error loading knowledge graph. Please ensure knowledge-graph.json exists.</p>';
+            }
+        }
+        
+        // Initialize statistics
+        function initializeStats() {
+            const statsContainer = document.getElementById('stats');
+            const metadata = graphData.metadata;
+            
+            statsContainer.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-number">${metadata.totalNodes}</div>
+                    <div class="stat-label">Total Entities</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${metadata.totalEdges}</div>
+                    <div class="stat-label">Total Relationships</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${Object.keys(metadata.entityTypes).length}</div>
+                    <div class="stat-label">Entity Types</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${new Date(metadata.extractedAt).toLocaleDateString()}</div>
+                    <div class="stat-label">Last Updated</div>
+                </div>
+            `;
+        }
+        
+        // Initialize filter dropdowns
+        function initializeFilters() {
+            const entityFilter = document.getElementById('entityFilter');
+            const relationshipFilter = document.getElementById('relationshipFilter');
+            
+            // Get unique entity types
+            const entityTypes = [...new Set(graphData.nodes.map(n => n.type))].sort();
+            entityTypes.forEach(type => {
+                const option = document.createElement('option');
+                option.value = type;
+                option.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+                entityFilter.appendChild(option);
+            });
+            
+            // Get unique relationship types
+            const relationshipTypes = [...new Set(graphData.edges.map(e => e.type))].sort();
+            relationshipTypes.forEach(type => {
+                const option = document.createElement('option');
+                option.value = type;
+                option.textContent = type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                relationshipFilter.appendChild(option);
+            });
+        }
+        
+        // Initialize the visualization
+        function initializeVisualization() {
+            const width = document.getElementById('graph').clientWidth;
+            const height = 600;
+            
+            svg = d3.select('#graph')
+                .attr('width', width)
+                .attr('height', height);
+            
+            g = svg.append('g');
+            
+            // Add zoom behavior
+            const zoom = d3.zoom()
+                .scaleExtent([0.1, 10])
+                .on('zoom', (event) => {
+                    g.attr('transform', event.transform);
+                });
+            
+            svg.call(zoom);
+            
+            // Create force simulation
+            simulation = d3.forceSimulation(graphData.nodes)
+                .force('link', d3.forceLink(graphData.edges).id(d => d.id).distance(100))
+                .force('charge', d3.forceManyBody().strength(-300))
+                .force('center', d3.forceCenter(width / 2, height / 2))
+                .force('collision', d3.forceCollide().radius(30));
+            
+            updateVisualization();
+        }
+        
+        // Update visualization based on current filters
+        function updateVisualization() {
+            const entityFilter = document.getElementById('entityFilter').value;
+            const relationshipFilter = document.getElementById('relationshipFilter').value;
+            
+            // Filter nodes
+            let filteredNodes = graphData.nodes;
+            if (entityFilter !== 'all') {
+                filteredNodes = graphData.nodes.filter(n => n.type === entityFilter);
+            }
+            
+            // Filter edges
+            let filteredEdges = graphData.edges;
+            if (relationshipFilter !== 'all') {
+                filteredEdges = graphData.edges.filter(e => e.type === relationshipFilter);
+            }
+            
+            // Only keep edges where both nodes are in filtered nodes
+            const nodeIds = new Set(filteredNodes.map(n => n.id));
+            filteredEdges = filteredEdges.filter(e => nodeIds.has(e.source) && nodeIds.has(e.target));
+            
+            // Clear existing elements
+            g.selectAll('*').remove();
+            
+            // Create links
+            link = g.append('g')
+                .selectAll('line')
+                .data(filteredEdges)
+                .enter().append('line')
+                .attr('class', 'link')
+                .attr('stroke-width', 2);
+            
+            // Create nodes
+            node = g.append('g')
+                .selectAll('circle')
+                .data(filteredNodes)
+                .enter().append('circle')
+                .attr('class', 'node')
+                .attr('r', d => d.type === 'project' ? 12 : 8)
+                .attr('fill', d => colorScheme[d.type] || '#666')
+                .on('mouseover', showTooltip)
+                .on('mouseout', hideTooltip)
+                .on('click', highlightConnections);
+            
+            // Create labels
+            label = g.append('g')
+                .selectAll('text')
+                .data(filteredNodes)
+                .enter().append('text')
+                .text(d => d.name || d.id.split(':')[1] || d.id)
+                .attr('font-size', '10px')
+                .attr('dx', 15)
+                .attr('dy', 4);
+            
+            // Update simulation
+            simulation.nodes(filteredNodes);
+            simulation.force('link').links(filteredEdges);
+            simulation.alpha(1).restart();
+            
+            simulation.on('tick', () => {
+                link
+                    .attr('x1', d => d.source.x)
+                    .attr('y1', d => d.source.y)
+                    .attr('x2', d => d.target.x)
+                    .attr('y2', d => d.target.y);
+                
+                node
+                    .attr('cx', d => d.x)
+                    .attr('cy', d => d.y);
+                
+                label
+                    .attr('x', d => d.x)
+                    .attr('y', d => d.y);
+            });
+        }
+        
+        // Initialize legend
+        function initializeLegend() {
+            const legendContainer = document.getElementById('legend');
+            
+            for (const [type, color] of Object.entries(colorScheme)) {
+                const item = document.createElement('div');
+                item.className = 'legend-item';
+                item.innerHTML = `
+                    <div class="legend-color" style="background: ${color}"></div>
+                    <span>${type.charAt(0).toUpperCase() + type.slice(1)}</span>
+                `;
+                legendContainer.appendChild(item);
+            }
+        }
+        
+        // Tooltip functions
+        function showTooltip(event, d) {
+            const tooltip = document.getElementById('tooltip');
+            const content = `
+                <strong>${d.name || d.id}</strong><br>
+                Type: ${d.type}<br>
+                ${d.status ? `Status: ${d.status}<br>` : ''}
+                ${d.priority ? `Priority: ${d.priority}<br>` : ''}
+                ${d.project ? `Project: ${d.project}<br>` : ''}
+                ${d.path ? `Path: ${d.path}` : ''}
+            `;
+            
+            tooltip.innerHTML = content;
+            tooltip.style.left = event.pageX + 10 + 'px';
+            tooltip.style.top = event.pageY - 10 + 'px';
+            tooltip.style.opacity = 1;
+        }
+        
+        function hideTooltip() {
+            document.getElementById('tooltip').style.opacity = 0;
+        }
+        
+        // Highlight connections
+        function highlightConnections(event, d) {
+            const connectedNodeIds = new Set();
+            connectedNodeIds.add(d.id);
+            
+            // Find connected nodes
+            graphData.edges.forEach(edge => {
+                if (edge.source.id === d.id || edge.source === d.id) {
+                    connectedNodeIds.add(edge.target.id || edge.target);
+                }
+                if (edge.target.id === d.id || edge.target === d.id) {
+                    connectedNodeIds.add(edge.source.id || edge.source);
+                }
+            });
+            
+            // Update node opacity
+            node.style('opacity', n => connectedNodeIds.has(n.id) ? 1 : 0.3);
+            link.style('opacity', l => 
+                (connectedNodeIds.has(l.source.id || l.source) && connectedNodeIds.has(l.target.id || l.target)) ? 1 : 0.1
+            );
+            label.style('opacity', n => connectedNodeIds.has(n.id) ? 1 : 0.3);
+            
+            // Reset after 2 seconds
+            setTimeout(() => {
+                node.style('opacity', 1);
+                link.style('opacity', 0.6);
+                label.style('opacity', 1);
+            }, 2000);
+        }
+        
+        // Search functionality
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                
+                if (query.length < 2) {
+                    searchResults.style.display = 'none';
+                    return;
+                }
+                
+                const results = graphData.nodes.filter(n => 
+                    (n.name && n.name.toLowerCase().includes(query)) ||
+                    n.id.toLowerCase().includes(query) ||
+                    (n.type && n.type.toLowerCase().includes(query))
+                );
+                
+                if (results.length > 0) {
+                    searchResults.style.display = 'block';
+                    searchResults.innerHTML = results.map(n => `
+                        <div class="search-result" onclick="focusNode('${n.id}')">
+                            <strong>${n.name || n.id}</strong> (${n.type})
+                            ${n.status ? `<br><small>Status: ${n.status}</small>` : ''}
+                        </div>
+                    `).join('');
+                } else {
+                    searchResults.style.display = 'none';
+                }
+            });
+        }
+        
+        // Focus on specific node
+        window.focusNode = function(nodeId) {
+            const targetNode = graphData.nodes.find(n => n.id === nodeId);
+            if (targetNode && simulation) {
+                // Center the view on the node
+                const width = document.getElementById('graph').clientWidth;
+                const height = 600;
+                
+                const transform = d3.zoomIdentity
+                    .translate(width / 2, height / 2)
+                    .scale(2)
+                    .translate(-targetNode.x, -targetNode.y);
+                
+                d3.select('#graph')
+                    .transition()
+                    .duration(750)
+                    .call(d3.zoom().transform, transform);
+                
+                // Highlight the node
+                highlightConnections(null, targetNode);
+            }
+            
+            // Hide search results
+            document.getElementById('searchResults').style.display = 'none';
+            document.getElementById('searchInput').value = '';
+        };
+        
+        // Event listeners
+        document.getElementById('entityFilter').addEventListener('change', updateVisualization);
+        document.getElementById('relationshipFilter').addEventListener('change', updateVisualization);
+        
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            loadGraph();
+            setupSearch();
+        });
+    </script>
+</body>
+</html>

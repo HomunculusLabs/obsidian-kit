@@ -3,7 +3,7 @@
 ## 📁 Recommended Structure
 
 ```
-8 - Projects/
+4 - Projects/
 ├── Projects.base                    # Main projects database
 ├── Tasks.base                       # Main tasks database
 ├── Project Management Dashboard.md  # Central dashboard
@@ -39,7 +39,7 @@
 ## 🎯 Current Structure (RuniverseAI Example)
 
 ```
-8 - Projects/
+4 - Projects/
 ├── Projects.base
 ├── Tasks.base
 ├── Project Management Dashboard.md
@@ -62,14 +62,14 @@
 
 ### Project Folders
 - **Name format**: `ProjectName` (no spaces in folder names work best)
-- **Location**: Direct subfolder of `/8 - Projects/`
+- **Location**: Direct subfolder of `/4 - Projects/`
 - **Contents**:
   - Main project file (`ProjectName.md`)
   - Project dashboard (`ProjectName Dashboard.md`)
   - `Tasks/` subfolder for all project tasks
 
 ### Task Files
-- **Location**: Always in `/8 - Projects/ProjectName/Tasks/`
+- **Location**: Always in `/4 - Projects/ProjectName/Tasks/`
 - **Name format**: `Task - Description.md`
 - **Linking**: Use `project: "[[ProjectName]]"` in frontmatter
 
@@ -117,8 +117,8 @@ filters:
 
 ### 1. Create Project Folder
 ```bash
-mkdir "8 - Projects/NewProject"
-mkdir "8 - Projects/NewProject/Tasks"
+mkdir "4 - Projects/NewProject"
+mkdir "4 - Projects/NewProject/Tasks"
 ```
 
 ### 2. Create Main Project File

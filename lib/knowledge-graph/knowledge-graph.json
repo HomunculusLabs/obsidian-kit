@@ -1,0 +1,1117 @@
+{
+  "nodes": [
+    {
+      "id": "tech:obsidian",
+      "type": "technology",
+      "name": "Obsidian"
+    },
+    {
+      "id": "tech:dataview",
+      "type": "technology",
+      "name": "Dataview"
+    },
+    {
+      "id": "concept:knowledge-graph",
+      "type": "concept",
+      "name": "Knowledge Graph"
+    },
+    {
+      "id": "concept:semantic-search",
+      "type": "concept",
+      "name": "semantic search"
+    },
+    {
+      "id": "concept:documentation",
+      "type": "concept",
+      "name": "documentation"
+    },
+    {
+      "id": "concept:task-management",
+      "type": "concept",
+      "name": "Task management"
+    },
+    {
+      "id": "concept:workflow-automation",
+      "type": "concept",
+      "name": "Workflow Automation"
+    },
+    {
+      "id": "concept:ai-agent",
+      "type": "concept",
+      "name": "AI agent"
+    },
+    {
+      "id": "task:Automated-Documentation",
+      "type": "task",
+      "name": "Automated Documentation Generation",
+      "status": "todo",
+      "priority": "medium",
+      "project": "Tasks",
+      "assignee": "AI Agent",
+      "timeEstimate": "120",
+      "dependencies": [
+        "Semantic-Search"
+      ],
+      "tags": [],
+      "path": "4 - Projects/Knowledge-Integration/Tasks/Automated-Documentation.md"
+    },
+    {
+      "id": "task:Knowledge-Graph",
+      "type": "task",
+      "name": "Knowledge Graph Construction",
+      "status": "todo",
+      "priority": "high",
+      "project": "Tasks",
+      "assignee": "AI Agent",
+      "timeEstimate": "160",
+      "dependencies": [
+        ""
+      ],
+      "tags": [],
+      "path": "4 - Projects/Knowledge-Integration/Tasks/Knowledge-Graph.md"
+    },
+    {
+      "id": "task:Learning-Capture",
+      "type": "task",
+      "name": "Learning Capture System",
+      "status": "todo",
+      "priority": "medium",
+      "project": "Tasks",
+      "assignee": "AI Agent",
+      "timeEstimate": "100",
+      "dependencies": [
+        "Automated-Documentation"
+      ],
+      "tags": [],
+      "path": "4 - Projects/Knowledge-Integration/Tasks/Learning-Capture.md"
+    },
+    {
+      "id": "task:Semantic-Search",
+      "type": "task",
+      "name": "Semantic Search Implementation",
+      "status": "todo",
+      "priority": "high",
+      "project": "Tasks",
+      "assignee": "AI Agent",
+      "timeEstimate": "140",
+      "dependencies": [
+        "Knowledge-Graph"
+      ],
+      "tags": [],
+      "path": "4 - Projects/Knowledge-Integration/Tasks/Semantic-Search.md"
+    },
+    {
+      "id": "project:Project Folder Structure Guide",
+      "type": "project",
+      "name": "Project Folder Structure Guide",
+      "tags": [],
+      "path": "4 - Projects/Project Folder Structure Guide.md"
+    },
+    {
+      "id": "project:Project Management Dashboard",
+      "type": "project",
+      "name": "Project Management Dashboard",
+      "tags": [],
+      "path": "4 - Projects/Project Management Dashboard.md"
+    },
+    {
+      "id": "project:README",
+      "type": "project",
+      "name": "README",
+      "tags": [],
+      "path": "4 - Projects/README.md"
+    },
+    {
+      "id": "concept:spec-driven-development",
+      "type": "concept",
+      "name": "Spec-driven development"
+    },
+    {
+      "id": "concept:progress-tracking",
+      "type": "concept",
+      "name": "progress tracking"
+    },
+    {
+      "id": "concept:dependency-management",
+      "type": "concept",
+      "name": "dependency management"
+    },
+    {
+      "id": "task:AI-Task-Breakdown",
+      "type": "task",
+      "name": "AI Task Breakdown System",
+      "status": "todo",
+      "priority": "high",
+      "project": "Tasks",
+      "assignee": "AI Agent",
+      "timeEstimate": "180",
+      "dependencies": [
+        "Fix-Dataview-Queries"
+      ],
+      "tags": [],
+      "path": "4 - Projects/Task-Management-Intelligence/Tasks/AI-Task-Breakdown.md"
+    },
+    {
+      "id": "task:Automated-Task-Generation",
+      "type": "task",
+      "name": "Automated Task Generation",
+      "status": "todo",
+      "priority": "medium",
+      "project": "Tasks",
+      "assignee": "AI Agent",
+      "timeEstimate": "120",
+      "dependencies": [
+        "Dependency-Management"
+      ],
+      "tags": [],
+      "path": "4 - Projects/Task-Management-Intelligence/Tasks/Automated-Task-Generation.md"
+    },
+    {
+      "id": "task:Dependency-Management",
+      "type": "task",
+      "name": "Task Dependency Management",
+      "status": "todo",
+      "priority": "medium",
+      "project": "Tasks",
+      "assignee": "AI Agent",
+      "timeEstimate": "150",
+      "dependencies": [
+        "AI-Task-Breakdown"
+      ],
+      "tags": [],
+      "path": "4 - Projects/Task-Management-Intelligence/Tasks/Dependency-Management.md"
+    },
+    {
+      "id": "task:Fix-Dataview-Queries",
+      "type": "task",
+      "name": "Fix Dataview Queries",
+      "status": "completed",
+      "priority": "high",
+      "project": "Tasks",
+      "assignee": "AI Agent",
+      "timeEstimate": "120",
+      "dependencies": [
+        ""
+      ],
+      "tags": [],
+      "path": "4 - Projects/Task-Management-Intelligence/Tasks/Fix-Dataview-Queries.md"
+    },
+    {
+      "id": "project:Test-Task",
+      "type": "project",
+      "name": "Test Task for Dataview",
+      "status": "todo",
+      "priority": "high",
+      "tags": [],
+      "path": "4 - Projects/Test-Task.md"
+    },
+    {
+      "id": "task:Automated-Progress-Tracking",
+      "type": "task",
+      "name": "Automated Progress Tracking",
+      "status": "todo",
+      "priority": "medium",
+      "project": "Tasks",
+      "assignee": "AI Agent",
+      "timeEstimate": "140",
+      "dependencies": [
+        "Spec-Driven-Development"
+      ],
+      "tags": [],
+      "path": "4 - Projects/Workflow-Automation/Tasks/Automated-Progress-Tracking.md"
+    },
+    {
+      "id": "task:Enhanced-Workflow-Commands",
+      "type": "task",
+      "name": "Enhanced Workflow Commands",
+      "status": "todo",
+      "priority": "high",
+      "project": "Tasks",
+      "assignee": "AI Agent",
+      "timeEstimate": "120",
+      "dependencies": [
+        ""
+      ],
+      "tags": [],
+      "path": "4 - Projects/Workflow-Automation/Tasks/Enhanced-Workflow-Commands.md"
+    },
+    {
+      "id": "task:Intelligent-Notifications",
+      "type": "task",
+      "name": "Intelligent Notification System",
+      "status": "todo",
+      "priority": "medium",
+      "project": "Tasks",
+      "assignee": "AI Agent",
+      "timeEstimate": "100",
+      "dependencies": [
+        "Automated-Progress-Tracking"
+      ],
+      "tags": [],
+      "path": "4 - Projects/Workflow-Automation/Tasks/Intelligent-Notifications.md"
+    },
+    {
+      "id": "task:Spec-Driven-Development",
+      "type": "task",
+      "name": "Spec-Driven Development Implementation",
+      "status": "todo",
+      "priority": "high",
+      "project": "Tasks",
+      "assignee": "AI Agent",
+      "timeEstimate": "160",
+      "dependencies": [
+        "Enhanced-Workflow-Commands"
+      ],
+      "tags": [],
+      "path": "4 - Projects/Workflow-Automation/Tasks/Spec-Driven-Development.md"
+    },
+    {
+      "id": "concept:intelligent-notifications",
+      "type": "concept",
+      "name": "Intelligent notifications"
+    },
+    {
+      "id": "spec:memory:constitution",
+      "type": "specification",
+      "subtype": "memory",
+      "name": "constitution",
+      "title": "Project Constitution",
+      "path": ".specify/memory/constitution.md"
+    },
+    {
+      "id": "spec:memory:decisions",
+      "type": "specification",
+      "subtype": "memory",
+      "name": "decisions",
+      "title": "Architecture Decision Records (ADRs)",
+      "path": ".specify/memory/decisions.md"
+    },
+    {
+      "id": "spec:specs:architecture",
+      "type": "specification",
+      "subtype": "specs",
+      "name": "architecture",
+      "title": "Project Architecture",
+      "path": ".specify/specs/architecture.md"
+    },
+    {
+      "id": "tech:typescript",
+      "type": "technology",
+      "name": "TypeScript"
+    },
+    {
+      "id": "tech:nodejs",
+      "type": "technology",
+      "name": "Node.js"
+    },
+    {
+      "id": "tech:mcp",
+      "type": "technology",
+      "name": "MCP"
+    },
+    {
+      "id": "tech:rest api",
+      "type": "technology",
+      "name": "REST API"
+    },
+    {
+      "id": "tech:templater",
+      "type": "technology",
+      "name": "Templater"
+    },
+    {
+      "id": "spec:specs:requirements",
+      "type": "specification",
+      "subtype": "specs",
+      "name": "requirements",
+      "title": "Project Requirements",
+      "path": ".specify/specs/requirements.md"
+    },
+    {
+      "id": "spec:workflows:development",
+      "type": "specification",
+      "subtype": "workflows",
+      "name": "development",
+      "title": "Development Workflow",
+      "path": ".specify/workflows/development.md"
+    },
+    {
+      "id": "agent:claude-code",
+      "type": "agent",
+      "name": "claude-code",
+      "capabilities": [
+        "For new features:"
+      ],
+      "path": "agents/claude-code.md"
+    },
+    {
+      "id": "agent:cursor",
+      "type": "agent",
+      "name": "cursor",
+      "capabilities": [
+        "@specify [feature-name] Create specification for new feature",
+        "@plan [feature-name] Create technical implementation plan",
+        "@tasks [feature-name] Break down feature into implementable tasks",
+        "- Implement feature across multiple files",
+        "What's the current state of [feature] implementation?",
+        "How does [new feature] fit with our architecture?",
+        "What are the requirements for [feature]?",
+        "4. Create tasks before implementing features"
+      ],
+      "path": "agents/cursor.md"
+    },
+    {
+      "id": "agent:opencode",
+      "type": "agent",
+      "name": "opencode",
+      "capabilities": [
+        "- Leverage VS Code's workspace features",
+        "1. **Workspace-Centric**: Use VS Code workspace features effectively",
+        "- Branch comparison for feature development",
+        "6. **Review**: Use built-in review features"
+      ],
+      "path": "agents/opencode.md"
+    },
+    {
+      "id": "agent:slash-commands",
+      "type": "agent",
+      "name": "slash-commands",
+      "capabilities": [
+        "**Purpose**: Define requirements and specifications for features or projects",
+        "**Usage**: `/specify [feature-name|review|refine]`",
+        "- Create detailed specifications for new features",
+        "**Usage**: `/plan [feature-name|architecture|technical]`",
+        "**Usage**: `/tasks [feature-name|breakdown|estimate]`"
+      ],
+      "path": "agents/slash-commands.md"
+    },
+    {
+      "id": "agent:universal-context",
+      "type": "agent",
+      "name": "universal-context",
+      "capabilities": [
+        "- All features begin with clear specifications in `.specify/specs/`"
+      ],
+      "path": "agents/universal-context.md"
+    },
+    {
+      "id": "integration-demo",
+      "name": "Integration Demo",
+      "type": "demo",
+      "title": "Integration Demo",
+      "description": "Component integration demonstration",
+      "status": "active"
+    },
+    {
+      "id": "Implement architecture",
+      "name": "Implement architecture",
+      "type": "task",
+      "title": "Implement architecture",
+      "description": "Task generated from specification: architecture.md",
+      "status": "todo",
+      "priority": "medium",
+      "tags": [
+        "spec-driven",
+        "generated"
+      ]
+    },
+    {
+      "id": "Implement requirements",
+      "name": "Implement requirements",
+      "type": "task",
+      "title": "Implement requirements",
+      "description": "Task generated from specification: requirements.md",
+      "status": "todo",
+      "priority": "medium",
+      "tags": [
+        "spec-driven",
+        "generated"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "project:Knowledge-Integration",
+      "target": "tech:obsidian",
+      "type": "uses"
+    },
+    {
+      "source": "project:Knowledge-Integration",
+      "target": "tech:dataview",
+      "type": "uses"
+    },
+    {
+      "source": "project:Knowledge-Integration",
+      "target": "concept:knowledge-graph",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Knowledge-Integration",
+      "target": "concept:semantic-search",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Knowledge-Integration",
+      "target": "concept:documentation",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Knowledge-Integration",
+      "target": "concept:task-management",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Knowledge-Integration",
+      "target": "concept:workflow-automation",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Knowledge-Integration",
+      "target": "concept:ai-agent",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Automated-Documentation",
+      "target": "project:Tasks",
+      "type": "belongs_to"
+    },
+    {
+      "source": "task:Automated-Documentation",
+      "target": "task:Semantic-Search",
+      "type": "depends_on"
+    },
+    {
+      "source": "task:Automated-Documentation",
+      "target": "concept:documentation",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Automated-Documentation",
+      "target": "concept:semantic-search",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Knowledge-Graph",
+      "target": "project:Tasks",
+      "type": "belongs_to"
+    },
+    {
+      "source": "task:Knowledge-Graph",
+      "target": "task:",
+      "type": "depends_on"
+    },
+    {
+      "source": "task:Knowledge-Graph",
+      "target": "concept:knowledge-graph",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Learning-Capture",
+      "target": "project:Tasks",
+      "type": "belongs_to"
+    },
+    {
+      "source": "task:Learning-Capture",
+      "target": "task:Automated-Documentation",
+      "type": "depends_on"
+    },
+    {
+      "source": "task:Learning-Capture",
+      "target": "concept:documentation",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Learning-Capture",
+      "target": "concept:knowledge-graph",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Semantic-Search",
+      "target": "project:Tasks",
+      "type": "belongs_to"
+    },
+    {
+      "source": "task:Semantic-Search",
+      "target": "task:Knowledge-Graph",
+      "type": "depends_on"
+    },
+    {
+      "source": "task:Semantic-Search",
+      "target": "concept:semantic-search",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Semantic-Search",
+      "target": "concept:knowledge-graph",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Project Folder Structure Guide",
+      "target": "concept:documentation",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Project Management Dashboard",
+      "target": "tech:obsidian",
+      "type": "uses"
+    },
+    {
+      "source": "project:Project Management Dashboard",
+      "target": "concept:task-management",
+      "type": "mentions"
+    },
+    {
+      "source": "project:README",
+      "target": "tech:obsidian",
+      "type": "uses"
+    },
+    {
+      "source": "project:README",
+      "target": "tech:dataview",
+      "type": "uses"
+    },
+    {
+      "source": "project:README",
+      "target": "concept:task-management",
+      "type": "mentions"
+    },
+    {
+      "source": "project:README",
+      "target": "concept:workflow-automation",
+      "type": "mentions"
+    },
+    {
+      "source": "project:README",
+      "target": "concept:semantic-search",
+      "type": "mentions"
+    },
+    {
+      "source": "project:README",
+      "target": "concept:knowledge-graph",
+      "type": "mentions"
+    },
+    {
+      "source": "project:README",
+      "target": "concept:documentation",
+      "type": "mentions"
+    },
+    {
+      "source": "project:README",
+      "target": "concept:spec-driven-development",
+      "type": "mentions"
+    },
+    {
+      "source": "project:README",
+      "target": "concept:progress-tracking",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Task-Management-Intelligence",
+      "target": "tech:dataview",
+      "type": "uses"
+    },
+    {
+      "source": "project:Task-Management-Intelligence",
+      "target": "tech:obsidian",
+      "type": "uses"
+    },
+    {
+      "source": "project:Task-Management-Intelligence",
+      "target": "concept:task-management",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Task-Management-Intelligence",
+      "target": "concept:ai-agent",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Task-Management-Intelligence",
+      "target": "concept:workflow-automation",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Task-Management-Intelligence",
+      "target": "concept:documentation",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Task-Management-Intelligence",
+      "target": "concept:dependency-management",
+      "type": "mentions"
+    },
+    {
+      "source": "task:AI-Task-Breakdown",
+      "target": "project:Tasks",
+      "type": "belongs_to"
+    },
+    {
+      "source": "task:AI-Task-Breakdown",
+      "target": "task:Fix-Dataview-Queries",
+      "type": "depends_on"
+    },
+    {
+      "source": "task:AI-Task-Breakdown",
+      "target": "tech:dataview",
+      "type": "uses"
+    },
+    {
+      "source": "task:Automated-Task-Generation",
+      "target": "project:Tasks",
+      "type": "belongs_to"
+    },
+    {
+      "source": "task:Automated-Task-Generation",
+      "target": "task:Dependency-Management",
+      "type": "depends_on"
+    },
+    {
+      "source": "task:Automated-Task-Generation",
+      "target": "concept:task-management",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Automated-Task-Generation",
+      "target": "concept:documentation",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Automated-Task-Generation",
+      "target": "concept:dependency-management",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Dependency-Management",
+      "target": "project:Tasks",
+      "type": "belongs_to"
+    },
+    {
+      "source": "task:Dependency-Management",
+      "target": "task:AI-Task-Breakdown",
+      "type": "depends_on"
+    },
+    {
+      "source": "task:Dependency-Management",
+      "target": "tech:dataview",
+      "type": "uses"
+    },
+    {
+      "source": "task:Dependency-Management",
+      "target": "concept:task-management",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Dependency-Management",
+      "target": "concept:dependency-management",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Fix-Dataview-Queries",
+      "target": "project:Tasks",
+      "type": "belongs_to"
+    },
+    {
+      "source": "task:Fix-Dataview-Queries",
+      "target": "task:",
+      "type": "depends_on"
+    },
+    {
+      "source": "task:Fix-Dataview-Queries",
+      "target": "tech:dataview",
+      "type": "uses"
+    },
+    {
+      "source": "task:Fix-Dataview-Queries",
+      "target": "concept:task-management",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Test-Task",
+      "target": "tech:dataview",
+      "type": "uses"
+    },
+    {
+      "source": "task:Automated-Progress-Tracking",
+      "target": "project:Tasks",
+      "type": "belongs_to"
+    },
+    {
+      "source": "task:Automated-Progress-Tracking",
+      "target": "task:Spec-Driven-Development",
+      "type": "depends_on"
+    },
+    {
+      "source": "task:Automated-Progress-Tracking",
+      "target": "concept:ai-agent",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Automated-Progress-Tracking",
+      "target": "concept:task-management",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Automated-Progress-Tracking",
+      "target": "concept:progress-tracking",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Automated-Progress-Tracking",
+      "target": "concept:spec-driven-development",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Enhanced-Workflow-Commands",
+      "target": "project:Tasks",
+      "type": "belongs_to"
+    },
+    {
+      "source": "task:Enhanced-Workflow-Commands",
+      "target": "task:",
+      "type": "depends_on"
+    },
+    {
+      "source": "task:Enhanced-Workflow-Commands",
+      "target": "concept:task-management",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Enhanced-Workflow-Commands",
+      "target": "concept:progress-tracking",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Intelligent-Notifications",
+      "target": "project:Tasks",
+      "type": "belongs_to"
+    },
+    {
+      "source": "task:Intelligent-Notifications",
+      "target": "task:Automated-Progress-Tracking",
+      "type": "depends_on"
+    },
+    {
+      "source": "task:Intelligent-Notifications",
+      "target": "concept:task-management",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Intelligent-Notifications",
+      "target": "concept:progress-tracking",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Spec-Driven-Development",
+      "target": "project:Tasks",
+      "type": "belongs_to"
+    },
+    {
+      "source": "task:Spec-Driven-Development",
+      "target": "task:Enhanced-Workflow-Commands",
+      "type": "depends_on"
+    },
+    {
+      "source": "task:Spec-Driven-Development",
+      "target": "concept:task-management",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Spec-Driven-Development",
+      "target": "concept:spec-driven-development",
+      "type": "mentions"
+    },
+    {
+      "source": "task:Spec-Driven-Development",
+      "target": "concept:progress-tracking",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Workflow-Automation",
+      "target": "tech:dataview",
+      "type": "uses"
+    },
+    {
+      "source": "project:Workflow-Automation",
+      "target": "concept:workflow-automation",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Workflow-Automation",
+      "target": "concept:task-management",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Workflow-Automation",
+      "target": "concept:documentation",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Workflow-Automation",
+      "target": "concept:ai-agent",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Workflow-Automation",
+      "target": "concept:spec-driven-development",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Workflow-Automation",
+      "target": "concept:progress-tracking",
+      "type": "mentions"
+    },
+    {
+      "source": "project:Workflow-Automation",
+      "target": "concept:intelligent-notifications",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:memory:constitution",
+      "target": "tech:obsidian",
+      "type": "uses"
+    },
+    {
+      "source": "spec:memory:constitution",
+      "target": "concept:ai-agent",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:memory:constitution",
+      "target": "concept:documentation",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:memory:constitution",
+      "target": "concept:task-management",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:memory:decisions",
+      "target": "tech:obsidian",
+      "type": "uses"
+    },
+    {
+      "source": "spec:memory:decisions",
+      "target": "concept:documentation",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:memory:decisions",
+      "target": "concept:ai-agent",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:memory:decisions",
+      "target": "concept:spec-driven-development",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:specs:architecture",
+      "target": "tech:typescript",
+      "type": "uses"
+    },
+    {
+      "source": "spec:specs:architecture",
+      "target": "tech:nodejs",
+      "type": "uses"
+    },
+    {
+      "source": "spec:specs:architecture",
+      "target": "tech:obsidian",
+      "type": "uses"
+    },
+    {
+      "source": "spec:specs:architecture",
+      "target": "tech:mcp",
+      "type": "uses"
+    },
+    {
+      "source": "spec:specs:architecture",
+      "target": "tech:rest api",
+      "type": "uses"
+    },
+    {
+      "source": "spec:specs:architecture",
+      "target": "tech:dataview",
+      "type": "uses"
+    },
+    {
+      "source": "spec:specs:architecture",
+      "target": "tech:templater",
+      "type": "uses"
+    },
+    {
+      "source": "spec:specs:architecture",
+      "target": "concept:ai-agent",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:specs:architecture",
+      "target": "concept:task-management",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:specs:architecture",
+      "target": "concept:documentation",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:specs:architecture",
+      "target": "concept:knowledge-graph",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:specs:architecture",
+      "target": "concept:workflow-automation",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:specs:requirements",
+      "target": "tech:obsidian",
+      "type": "uses"
+    },
+    {
+      "source": "spec:specs:requirements",
+      "target": "concept:ai-agent",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:specs:requirements",
+      "target": "concept:task-management",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:specs:requirements",
+      "target": "concept:documentation",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:specs:requirements",
+      "target": "concept:knowledge-graph",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:workflows:development",
+      "target": "concept:task-management",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:workflows:development",
+      "target": "concept:documentation",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:workflows:development",
+      "target": "concept:ai-agent",
+      "type": "mentions"
+    },
+    {
+      "source": "spec:workflows:development",
+      "target": "concept:spec-driven-development",
+      "type": "mentions"
+    },
+    {
+      "source": "agent:claude-code",
+      "target": "tech:mcp",
+      "type": "uses"
+    },
+    {
+      "source": "agent:claude-code",
+      "target": "tech:obsidian",
+      "type": "uses"
+    },
+    {
+      "source": "agent:claude-code",
+      "target": "concept:task-management",
+      "type": "mentions"
+    },
+    {
+      "source": "agent:claude-code",
+      "target": "concept:documentation",
+      "type": "mentions"
+    },
+    {
+      "source": "agent:claude-code",
+      "target": "concept:spec-driven-development",
+      "type": "mentions"
+    },
+    {
+      "source": "agent:cursor",
+      "target": "concept:documentation",
+      "type": "mentions"
+    },
+    {
+      "source": "agent:cursor",
+      "target": "concept:semantic-search",
+      "type": "mentions"
+    },
+    {
+      "source": "agent:cursor",
+      "target": "concept:task-management",
+      "type": "mentions"
+    },
+    {
+      "source": "agent:cursor",
+      "target": "concept:ai-agent",
+      "type": "mentions"
+    },
+    {
+      "source": "agent:cursor",
+      "target": "concept:workflow-automation",
+      "type": "mentions"
+    },
+    {
+      "source": "agent:cursor",
+      "target": "concept:spec-driven-development",
+      "type": "mentions"
+    },
+    {
+      "source": "agent:opencode",
+      "target": "concept:documentation",
+      "type": "mentions"
+    },
+    {
+      "source": "agent:opencode",
+      "target": "concept:spec-driven-development",
+      "type": "mentions"
+    },
+    {
+      "source": "agent:slash-commands",
+      "target": "concept:documentation",
+      "type": "mentions"
+    },
+    {
+      "source": "agent:slash-commands",
+      "target": "concept:spec-driven-development",
+      "type": "mentions"
+    },
+    {
+      "source": "agent:universal-context",
+      "target": "tech:dataview",
+      "type": "uses"
+    },
+    {
+      "source": "agent:universal-context",
+      "target": "concept:documentation",
+      "type": "mentions"
+    },
+    {
+      "source": "agent:universal-context",
+      "target": "concept:spec-driven-development",
+      "type": "mentions"
+    }
+  ],
+  "metadata": {
+    "extractedAt": "2025-10-02T02:02:21.442Z",
+    "totalNodes": 43,
+    "totalEdges": 134,
+    "entityTypes": {
+      "technology": 7,
+      "concept": 10,
+      "task": 12,
+      "project": 4,
+      "specification": 5,
+      "agent": 5
+    }
+  }
+}

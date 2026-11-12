@@ -1,14 +1,15 @@
 # 🧠 Obsidian Kit
 
-A CLI tool for setting up Obsidian vaults with AI agent integration, task management, and spec-driven development workflows.
+A universal CLI tool for setting up project vaults with AI agent integration across multiple coding environments. Based on spec-kit methodology with support for Claude Code, OpenCode, Cursor, and more.
 
 ## Features
 
 - **🚀 One-Command Setup**: Initialize project vaults with proven structure
-- **🤖 AI Agent Integration**: Single agent per project with MCP server support
+- **🤖 Universal AI Integration**: Support for Claude Code, OpenCode, Cursor, Copilot
 - **📋 Task Management**: Built-in project management system with Dataview
-- **📝 Spec-Driven Development**: Integrate with spec-kit methodology
-- **⚡ Health Monitoring**: Track vault status and AI agent performance
+- **📝 Spec-Driven Development**: Full spec-kit methodology integration
+- **⚡ Health Monitoring**: Track project health across all development phases
+- **🔄 Standardized Workflows**: Consistent slash commands across all AI tools
 
 ## Quick Start
 
@@ -20,8 +21,13 @@ curl -sSL https://raw.githubusercontent.com/username/obsidian-kit/main/scripts/i
 obsidian-kit init my-project
 cd my-project
 
-# Configure AI integration
-obsidian-kit add-mcp --vault-name my-project
+# Configure your preferred AI tool
+obsidian-kit agent add claude-code
+# or: obsidian-kit agent add opencode
+# or: obsidian-kit agent add cursor
+
+# Start spec-driven development
+obsidian-kit workflow constitution
 
 # Check everything is working
 obsidian-kit status
@@ -42,11 +48,17 @@ project-vault/
 ├── 4 - Projects/             # Main project management
 │   ├── Tasks.base           # Task database
 │   └── Project Management Dashboard.md
-├── claude/                   # AI agent configuration
-│   └── agents.md
-├── .specify/                 # Spec-driven development
-│   ├── memory/
-│   └── specs/
+├── agents/                   # Universal AI agent configurations
+│   ├── claude-code.md       # Claude Code specific setup
+│   ├── opencode.md          # VS Code/OpenCode setup
+│   ├── cursor.md            # Cursor AI setup
+│   ├── universal-context.md # Shared context for all agents
+│   └── slash-commands.md    # Standardized commands
+├── .specify/                 # Spec-kit integration
+│   ├── memory/              # Constitution and decisions
+│   ├── specs/               # Requirements and architecture
+│   ├── agents/              # Agent-specific configurations
+│   └── workflows/           # Development workflows
 └── mcp-config.json          # MCP server config
 ```
 

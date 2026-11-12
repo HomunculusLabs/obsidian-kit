@@ -33,7 +33,7 @@ async function mcpCommand(options) {
     console.log(chalk.yellow('📋 Setup Summary:'));
     console.log(`   Vault Name: ${config.vaultName}`);
     console.log(`   API Key: ${config.apiKey ? '***' + config.apiKey.slice(-4) : 'Not set'}`);
-    console.log(`   MCP Server: Configured for Claude Desktop\n`);
+    console.log('   MCP Server: Configured for Claude Desktop\n');
 
     console.log(chalk.yellow('🔧 Required Manual Steps:'));
     console.log('1. Install Obsidian Local REST API plugin in Obsidian');
@@ -80,8 +80,8 @@ async function getMCPConfiguration(options) {
         type: 'password',
         name: 'apiKey',
         message: 'Enter your Obsidian REST API key (or leave blank to set later):',
-        mask: '*'
-      }
+        mask: '*',
+      },
     ]);
     config.apiKey = apiKey;
   }
@@ -139,8 +139,8 @@ async function updateClaudeConfig(config) {
       command: 'npx',
       args: ['@cyanheads/obsidian-mcp-server'],
       env: {
-        OBSIDIAN_VAULT_NAME: config.vaultName
-      }
+        OBSIDIAN_VAULT_NAME: config.vaultName,
+      },
     };
 
     if (config.apiKey) {

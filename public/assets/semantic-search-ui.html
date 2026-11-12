@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantic Search - Obsidian Kit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .search-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .search-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .search-options {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .option-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .option-group label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .option-group input,
+        .option-group select {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .suggestions {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .suggestions.active {
+            display: block;
+        }
+
+        .suggestion-item {
+            display: inline-block;
+            background: white;
+            padding: 5px 12px;
+            margin: 3px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            transition: all 0.2s;
+        }
+
+        .suggestion-item:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .results-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            min-height: 200px;
+        }
+
+        .result-item {
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .result-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .result-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .result-type {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .result-score {
+            background: #f3e5f5;
+            color: #7b1fa2;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .result-content {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .result-path {
+            font-size: 12px;
+            color: #888;
+            font-family: monospace;
+        }
+
+        .result-tags {
+            margin-top: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #f0f0f0;
+            color: #666;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            margin-right: 5px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .stats {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .advanced-toggle {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            text-align: center;
+            transition: background 0.2s;
+        }
+
+        .advanced-toggle:hover {
+            background: #e9ecef;
+        }
+
+        .advanced-options {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .advanced-options.active {
+            display: block;
+        }
+
+        .filter-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .filter-group label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .filter-group input,
+        .filter-group select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 Semantic Search</h1>
+            <p>Intelligent search for your Obsidian vault</p>
+        </header>
+
+        <div class="search-container">
+            <form class="search-form" id="searchForm">
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    id="searchInput" 
+                    placeholder="Enter your search query..."
+                    autocomplete="off"
+                >
+                <button type="submit" class="search-btn">Search</button>
+            </form>
+
+            <div class="advanced-toggle" id="advancedToggle">
+                ⚙️ Advanced Options
+            </div>
+
+            <div class="advanced-options" id="advancedOptions">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="maxResults">Max Results</label>
+                        <input type="number" id="maxResults" value="10" min="1" max="50">
+                    </div>
+                    <div class="filter-group">
+                        <label for="threshold">Similarity Threshold</label>
+                        <input type="number" id="threshold" value="0.3" min="0" max="1" step="0.1">
+                    </div>
+                    <div class="filter-group">
+                        <label for="docType">Document Type</label>
+                        <select id="docType">
+                            <option value="">All Types</option>
+                            <option value="task">Task</option>
+                            <option value="project">Project</option>
+                            <option value="note">Note</option>
+                            <option value="specification">Specification</option>
+                            <option value="agent">Agent</option>
+                            <option value="template">Template</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="status">Status</label>
+                        <select id="status">
+                            <option value="">All Statuses</option>
+                            <option value="todo">To Do</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="completed">Completed</option>
+                            <option value="blocked">Blocked</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="priority">Priority</label>
+                        <select id="priority">
+                            <option value="">All Priorities</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="critical">Critical</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="tags">Tags (comma-separated)</label>
+                        <input type="text" id="tags" placeholder="tag1, tag2">
+                    </div>
+                    <div class="filter-group">
+                        <label for="project">Project</label>
+                        <input type="text" id="project" placeholder="Project name">
+                    </div>
+                    <div class="filter-group">
+                        <label>
+                            <input type="checkbox" id="boostRecent" checked> Boost Recent Documents
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="suggestions" id="suggestions">
+                <strong>💡 Suggestions:</strong>
+                <div id="suggestionList"></div>
+            </div>
+
+            <div class="stats" id="stats" style="display: none;">
+                <div class="stat-item">
+                    <div class="stat-value" id="totalResults">0</div>
+                    <div class="stat-label">Results Found</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="searchTime">0ms</div>
+                    <div class="stat-label">Search Time</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="avgScore">0.00</div>
+                    <div class="stat-label">Avg Score</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="totalSearches">0</div>
+                    <div class="stat-label">Total Searches</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-container">
+            <div id="resultsArea">
+                <div style="text-align: center; padding: 40px; color: #666;">
+                    <h3>🔍 Ready to Search</h3>
+                    <p>Enter a query above to search your vault semantically</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3001/api';
+        let searchTimeout;
+        let totalSearchCount = 0;
+
+        // DOM elements
+        const searchForm = document.getElementById('searchForm');
+        const searchInput = document.getElementById('searchInput');
+        const resultsArea = document.getElementById('resultsArea');
+        const suggestions = document.getElementById('suggestions');
+        const suggestionList = document.getElementById('suggestionList');
+        const stats = document.getElementById('stats');
+        const advancedToggle = document.getElementById('advancedToggle');
+        const advancedOptions = document.getElementById('advancedOptions');
+
+        // Advanced options
+        const maxResults = document.getElementById('maxResults');
+        const threshold = document.getElementById('threshold');
+        const docType = document.getElementById('docType');
+        const status = document.getElementById('status');
+        const priority = document.getElementById('priority');
+        const tags = document.getElementById('tags');
+        const project = document.getElementById('project');
+        const boostRecent = document.getElementById('boostRecent');
+
+        // Toggle advanced options
+        advancedToggle.addEventListener('click', () => {
+            advancedOptions.classList.toggle('active');
+        });
+
+        // Search form submission
+        searchForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const query = searchInput.value.trim();
+            if (query) {
+                await performSearch(query);
+            }
+        });
+
+        // Input handling for suggestions
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.trim();
+            if (query.length >= 2) {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    getSuggestions(query);
+                }, 300);
+            } else {
+                suggestions.classList.remove('active');
+            }
+        });
+
+        // Get search suggestions
+        async function getSuggestions(query) {
+            try {
+                const response = await fetch(`${API_BASE}/suggestions?q=${encodeURIComponent(query)}`);
+                const data = await response.json();
+                
+                if (data.suggestions.length > 0 || data.expansions.length > 0) {
+                    suggestionList.innerHTML = '';
+                    
+                    data.suggestions.forEach(suggestion => {
+                        const item = document.createElement('span');
+                        item.className = 'suggestion-item';
+                        item.textContent = suggestion.text;
+                        item.addEventListener('click', () => {
+                            searchInput.value = suggestion.text;
+                            performSearch(suggestion.text);
+                        });
+                        suggestionList.appendChild(item);
+                    });
+                    
+                    data.expansions.forEach(expansion => {
+                        const item = document.createElement('span');
+                        item.className = 'suggestion-item';
+                        item.textContent = expansion;
+                        item.addEventListener('click', () => {
+                            searchInput.value = expansion;
+                            performSearch(expansion);
+                        });
+                        suggestionList.appendChild(item);
+                    });
+                    
+                    suggestions.classList.add('active');
+                } else {
+                    suggestions.classList.remove('active');
+                }
+            } catch (error) {
+                console.error('Error getting suggestions:', error);
+            }
+        }
+
+        // Perform search
+        async function performSearch(query) {
+            suggestions.classList.remove('active');
+            
+            // Show loading
+            resultsArea.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Searching...</p>
+                </div>
+            `;
+
+            try {
+                const isAdvanced = advancedOptions.classList.contains('active');
+                const endpoint = isAdvanced ? '/advanced-search' : '/search';
+                const params = new URLSearchParams({ q: query });
+                
+                // Add basic parameters
+                params.append('max_results', maxResults.value);
+                params.append('threshold', threshold.value);
+                params.append('include_metadata', 'true');
+                params.append('boost_recent', boostRecent.checked);
+                
+                // Add advanced parameters if in advanced mode
+                if (isAdvanced) {
+                    if (docType.value) params.append('type', docType.value);
+                    if (status.value) params.append('status', status.value);
+                    if (priority.value) params.append('priority', priority.value);
+                    if (tags.value) params.append('tags', tags.value);
+                    if (project.value) params.append('project', project.value);
+                }
+
+                const response = await fetch(`${API_BASE}${endpoint}?${params}`);
+                const data = await response.json();
+
+                if (response.ok) {
+                    displayResults(data);
+                    updateStats(data);
+                    totalSearchCount++;
+                } else {
+                    throw new Error(data.error || 'Search failed');
+                }
+            } catch (error) {
+                resultsArea.innerHTML = `
+                    <div class="error">
+                        ❌ Error: ${error.message}
+                    </div>
+                `;
+                stats.style.display = 'none';
+            }
+        }
+
+        // Display search results
+        function displayResults(data) {
+            if (data.results.length === 0) {
+                resultsArea.innerHTML = `
+                    <div class="no-results">
+                        <h3>🔍 No Results Found</h3>
+                        <p>Try adjusting your search query or filters</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const resultsHTML = data.results.map(result => {
+                const metadata = result.metadata || {};
+                const tags = metadata.tags || [];
+                
+                return `
+                    <div class="result-item">
+                        <div class="result-header">
+                            <div>
+                                <div class="result-title">${escapeHtml(result.title)}</div>
+                                <div class="result-meta">
+                                    <span class="result-type">${result.type}</span>
+                                    <span class="result-score">Score: ${result.score.toFixed(3)}</span>
+                                    ${metadata.status ? `<span>Status: ${metadata.status}</span>` : ''}
+                                    ${metadata.priority ? `<span>Priority: ${metadata.priority}</span>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="result-content">${escapeHtml(result.content.substring(0, 300))}${result.content.length > 300 ? '...' : ''}</div>
+                        <div class="result-path">${escapeHtml(result.path)}</div>
+                        ${tags.length > 0 ? `
+                            <div class="result-tags">
+                                ${tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+
+            resultsArea.innerHTML = resultsHTML;
+        }
+
+        // Update statistics
+        function updateStats(data) {
+            document.getElementById('totalResults').textContent = data.totalFound;
+            document.getElementById('searchTime').textContent = `${data.searchTime || 0}ms`;
+            
+            const avgScore = data.results.length > 0 
+                ? (data.results.reduce((sum, r) => sum + r.score, 0) / data.results.length).toFixed(2)
+                : '0.00';
+            document.getElementById('avgScore').textContent = avgScore;
+            
+            document.getElementById('totalSearches').textContent = totalSearchCount + 1;
+            
+            stats.style.display = 'grid';
+        }
+
+        // Utility function to escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Load initial analytics
+        async function loadAnalytics() {
+            try {
+                const response = await fetch(`${API_BASE}/analytics`);
+                const data = await response.json();
+                
+                if (data.searchAnalytics) {
+                    totalSearchCount = data.searchAnalytics.totalSearches || 0;
+                }
+            } catch (error) {
+                console.error('Error loading analytics:', error);
+            }
+        }
+
+        // Initialize
+        loadAnalytics();
+        
+        // Focus on search input
+        searchInput.focus();
+    </script>
+</body>
+</html>

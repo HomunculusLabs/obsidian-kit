@@ -69,8 +69,8 @@ async function promptForProjectName() {
           return 'Project name can only contain letters, numbers, spaces, hyphens, and underscores.';
         }
         return true;
-      }
-    }
+      },
+    },
   ]);
   return name.trim();
 }
@@ -81,8 +81,8 @@ async function confirmOverwrite(targetDir) {
       type: 'confirm',
       name: 'confirm',
       message: `Directory ${targetDir} is not empty. Continue anyway?`,
-      default: false
-    }
+      default: false,
+    },
   ]);
   return confirm;
 }
@@ -93,7 +93,7 @@ async function updateProjectFiles(targetDir, projectName) {
   if (fs.existsSync(constitutionPath)) {
     let content = await fs.readFile(constitutionPath, 'utf8');
     content = content.replace('[PROJECT_VISION_PLACEHOLDER - replace with specific project goals]',
-                             `${projectName} - [Define your project vision here]`);
+      `${projectName} - [Define your project vision here]`);
     content = content.replace('{{date:YYYY-MM-DD}}', new Date().toISOString().split('T')[0]);
     await fs.writeFile(constitutionPath, content);
   }

@@ -17,7 +17,7 @@ filters:
   and:
     - file.hasTag("task")
     - file.ext == "md"
-    - file.path.contains("8 - Projects")
+    - file.path.contains("4 - Projects")
 formulas:
   status_icon: if(status == "completed", icon("check-circle-2"), if(status == "in-progress", icon("play-circle"), if(status == "blocked", icon("x-circle"), if(status == "review", icon("eye"), icon("circle")))))
   priority_icon: if(priority == "high", "🔴 High", if(priority == "medium", "🟡 Med", "🟢 Low"))

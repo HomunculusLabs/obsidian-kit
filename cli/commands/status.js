@@ -24,7 +24,7 @@ async function getVaultStatus() {
     claudeConfigured: false,
     pluginStatus: {},
     taskStats: {},
-    healthScore: 0
+    healthScore: 0,
   };
 
   // Check if this is a valid Obsidian Kit vault
@@ -122,7 +122,7 @@ async function getTaskStatistics() {
     pending: 0,
     inProgress: 0,
     completed: 0,
-    overdue: 0
+    overdue: 0,
   };
 
   if (!fs.existsSync(tasksBasePath)) {
@@ -146,7 +146,7 @@ async function getTaskStatistics() {
     const today = new Date().toISOString().split('T')[0];
     stats.overdue = taskLines.filter(line =>
       line.includes('due_date:') &&
-      line.includes(today) // This is simplified
+      line.includes(today), // This is simplified
     ).length;
 
   } catch (error) {
@@ -193,7 +193,7 @@ function displayStatus(status, verbose) {
 
   // Health overview
   const healthColor = status.healthScore >= 80 ? chalk.green :
-                     status.healthScore >= 60 ? chalk.yellow : chalk.red;
+    status.healthScore >= 60 ? chalk.yellow : chalk.red;
 
   console.log(healthColor.bold(`🎯 Vault Health: ${status.healthScore}/100`));
   console.log(chalk.gray(`   Vault: ${status.vaultName}\n`));

@@ -1,14 +1,14 @@
 ---
 title: "Fix Dataview Queries"
-status: "todo"
+status: "completed"
 priority: "high"
 project: "[[Task-Management-Intelligence]]"
 assignee: "AI Agent"
 due_date: "2025-10-07"
 created_date: "2025-10-01"
-completed_date: ""
+completed_date: "2025-10-01"
 time_estimate: 120
-time_spent: 0
+time_spent: 90
 dependencies: []
 subtasks:
   - "Fix Tasks.base path references from 8 - Projects to 4 - Projects"

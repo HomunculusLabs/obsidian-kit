@@ -7,20 +7,20 @@ async function agentCommand(action, tool, options) {
   console.log(chalk.blue.bold('\n🤖 Obsidian Kit - Agent Management\n'));
 
   switch (action) {
-    case 'add':
-      await addAgent(tool, options);
-      break;
-    case 'list':
-      await listAgents(options);
-      break;
-    case 'sync':
-      await syncAgents(options);
-      break;
-    case 'configure':
-      await configureAgent(tool, options);
-      break;
-    default:
-      showAgentHelp();
+  case 'add':
+    await addAgent(tool, options);
+    break;
+  case 'list':
+    await listAgents(options);
+    break;
+  case 'sync':
+    await syncAgents(options);
+    break;
+  case 'configure':
+    await configureAgent(tool, options);
+    break;
+  default:
+    showAgentHelp();
   }
 }
 
@@ -47,9 +47,9 @@ async function addAgent(tool, options) {
           message: 'Which AI coding tool do you want to configure?',
           choices: availableAgents.map(agent => ({
             name: `${agent.display} - ${agent.description}`,
-            value: agent.name
-          }))
-        }
+            value: agent.name,
+          })),
+        },
       ]);
       selectedAgent = agent;
     }
@@ -180,7 +180,7 @@ async function syncAgents(options) {
     const agentConfigs = agentFiles.filter(file =>
       file.endsWith('.md') &&
       file !== 'universal-context.md' &&
-      file !== 'slash-commands.md'
+      file !== 'slash-commands.md',
     );
 
     console.log(chalk.green(`   ✓ Validated ${agentConfigs.length} agent configurations`));
@@ -222,23 +222,23 @@ async function getAvailableAgents() {
     {
       name: 'claude-code',
       display: 'Claude Code',
-      description: 'Anthropic\'s Claude with file system and tool access'
+      description: 'Anthropic\'s Claude with file system and tool access',
     },
     {
       name: 'opencode',
       display: 'OpenCode/VS Code',
-      description: 'VS Code with AI assistant integration'
+      description: 'VS Code with AI assistant integration',
     },
     {
       name: 'cursor',
       display: 'Cursor',
-      description: 'AI-first code editor with Composer'
+      description: 'AI-first code editor with Composer',
     },
     {
       name: 'copilot',
       display: 'GitHub Copilot',
-      description: 'GitHub\'s AI pair programmer'
-    }
+      description: 'GitHub\'s AI pair programmer',
+    },
   ];
 }
 
@@ -246,36 +246,36 @@ async function showSetupInstructions(agentConfig) {
   console.log(chalk.yellow(`\n📋 Setup Instructions for ${agentConfig.display}:\n`));
 
   switch (agentConfig.name) {
-    case 'claude-code':
-      console.log(chalk.gray('1. Ensure Claude Code has access to your project directory'));
-      console.log(chalk.gray('2. Configure MCP servers if needed: obsidian-kit add-mcp'));
-      console.log(chalk.gray('3. Reference agents/claude-code.md for specific commands'));
-      console.log(chalk.gray('4. Use slash commands like /constitution, /specify, /plan'));
-      break;
+  case 'claude-code':
+    console.log(chalk.gray('1. Ensure Claude Code has access to your project directory'));
+    console.log(chalk.gray('2. Configure MCP servers if needed: obsidian-kit add-mcp'));
+    console.log(chalk.gray('3. Reference agents/claude-code.md for specific commands'));
+    console.log(chalk.gray('4. Use slash commands like /constitution, /specify, /plan'));
+    break;
 
-    case 'opencode':
-      console.log(chalk.gray('1. Install recommended VS Code extensions'));
-      console.log(chalk.gray('2. Copy workspace configuration from agents/opencode.md'));
-      console.log(chalk.gray('3. Set up custom tasks and keybindings'));
-      console.log(chalk.gray('4. Configure AI assistant extension for your setup'));
-      break;
+  case 'opencode':
+    console.log(chalk.gray('1. Install recommended VS Code extensions'));
+    console.log(chalk.gray('2. Copy workspace configuration from agents/opencode.md'));
+    console.log(chalk.gray('3. Set up custom tasks and keybindings'));
+    console.log(chalk.gray('4. Configure AI assistant extension for your setup'));
+    break;
 
-    case 'cursor':
-      console.log(chalk.gray('1. Enable codebase indexing in Cursor settings'));
-      console.log(chalk.gray('2. Add custom instructions from agents/cursor.md'));
-      console.log(chalk.gray('3. Configure privacy settings for sensitive files'));
-      console.log(chalk.gray('4. Use @ commands for project-specific assistance'));
-      break;
+  case 'cursor':
+    console.log(chalk.gray('1. Enable codebase indexing in Cursor settings'));
+    console.log(chalk.gray('2. Add custom instructions from agents/cursor.md'));
+    console.log(chalk.gray('3. Configure privacy settings for sensitive files'));
+    console.log(chalk.gray('4. Use @ commands for project-specific assistance'));
+    break;
 
-    case 'copilot':
-      console.log(chalk.gray('1. Install GitHub Copilot extension'));
-      console.log(chalk.gray('2. Configure Copilot settings for your workflow'));
-      console.log(chalk.gray('3. Set up custom prompts and templates'));
-      console.log(chalk.gray('4. Integrate with existing development tools'));
-      break;
+  case 'copilot':
+    console.log(chalk.gray('1. Install GitHub Copilot extension'));
+    console.log(chalk.gray('2. Configure Copilot settings for your workflow'));
+    console.log(chalk.gray('3. Set up custom prompts and templates'));
+    console.log(chalk.gray('4. Integrate with existing development tools'));
+    break;
 
-    default:
-      console.log(chalk.gray('See agent configuration file for specific setup instructions.'));
+  default:
+    console.log(chalk.gray('See agent configuration file for specific setup instructions.'));
   }
 
   console.log(chalk.yellow('\n🔗 Universal Features:'));
